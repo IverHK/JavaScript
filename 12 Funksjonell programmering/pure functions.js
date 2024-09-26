@@ -14,4 +14,4 @@ function count() {
 
 function countOne(number) {
 		return number + 1;
-}
+} 
