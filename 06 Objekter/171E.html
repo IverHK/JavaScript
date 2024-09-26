@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+</head>
+
+<body>
+		<div id="app"></div>
+
+		<script>
+				// Model
+				let currentText='';
+				let wordCounts = [];
+				let words=[];
+
+				// View
+				updateView();
+				function updateView() {
+						document.getElementById('app').innerHTML = /*HTML*/`
+						<textarea name="" id="textInput" oninput="currentText=this.value"></textarea><br>
+						<button onclick="checkText()">Check text</button>	<br>
+						<div>Original text: ${currentText}</div>
+						<div>Hmm text: ${wordCounts}</div>
+
+						`;
+				}
+
+				// Controller
+				function checkText(){
+					words = currentText.split(" ");
+					// for(i=0;i<words.length;i++){
+					// 	let word = words[i];
+					// 	if(wordCounts[word]) wordCounts[word]++ ;
+					// 	else wordCounts[word] = 1;
+					// }
+					for(let word in words){
+						word = words[word];
+						if(wordCounts[word]) wordCounts[word]++ ;
+						else wordCounts[word] = 1;
+					}
+					updateView();
+				}
+
+				// Oppgave 171 E   La brukeren skrive inn en tekst i en <textarea>. 
+				// 	Bruk .split(' ') til å dele opp teksten i en liste av ord. 
+				// 	Loop gjennom alle ordene og bruk et objekt til å telle opp hvor 
+				// 	mange forekomster det er av hvert ord. Om du har ordet i variabelen 
+				// 	word, teller du opp med if(wordCounts['hei']) wordCounts['hei']++ 
+				// 	else wordCounts['hei'] = 1. Etterpå looper du gjennom alle ordene med 
+				// 	for(let word in words). Merk at det her skal være in, som betyr alle 
+				// 	feltene i et objekt, og ikke of som er alle elementene i en liste. 
+				// 	Antall av et bestemt ord er da wordCounts[word].
+
+				
+		</script>
+</body>
+
+</html>

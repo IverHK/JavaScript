@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <style>
+        .trafficLight {
+            width: 3rem;
+            height: 10rem;
+            display: flex;
+            flex-direction: column;
+            background-color: black;
+            padding: 1rem;
+            gap: 1rem;
+        }
+
+        .light {
+            background-color: red;
+            border-radius: 50%;
+            width: 3rem;
+            height: 3rem;
+        }
+    </style>
+</head>
+<body>
+	<div id="TL">
+		<div class="trafficLight" onclick="click1()">
+			<div class="light" style="background-color: red;"></div>
+			<div class="light" style="background-color: grey;"></div>
+			<div class="light" style="background-color: grey;"></div>
+	</div>
+</div>
+
+<script>
+
+	function click1(){
+		document.getElementById('TL').innerHTML = /*HTML*/ `
+		<div class="trafficLight" onclick="click2()">
+			<div class="light" style="background-color: red;"></div>
+			<div class="light" style="background-color: yellow;"></div>
+			<div class="light" style="background-color: grey;"></div>
+	</div>
+		`
+	}
+
+	function click2(){
+		document.getElementById('TL').innerHTML = /*HTML*/ `
+		<div class="trafficLight" onclick="click3()">
+			<div class="light" style="background-color: grey;"></div>
+			<div class="light" style="background-color: grey;"></div>
+			<div class="light" style="background-color: green;"></div>
+	</div>
+		`
+	}
+
+	function click3(){
+		document.getElementById('TL').innerHTML = /*HTML*/ `
+		<div class="trafficLight" onclick="click4()">
+			<div class="light" style="background-color: grey;"></div>
+			<div class="light" style="background-color: yellow;"></div>
+			<div class="light" style="background-color: grey;"></div>
+	</div>
+		`
+	}
+	function click4(){
+		document.getElementById('TL').innerHTML = /*HTML*/ `
+		<div class="trafficLight" onclick="click1()">
+			<div class="light" style="background-color: red;"></div>
+			<div class="light" style="background-color: grey;"></div>
+			<div class="light" style="background-color: grey;"></div>
+	</div>
+		`
+	}
+
+</script>
+
+
+</body>
+	
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<button onclick="showingOnScreen(1)">1</button>
+	<button onclick="showingOnScreen(2)">2</button>
+	<button onclick="showingOnScreen(3)">3</button>
+	<button onclick="showingOnScreen(4)">4</button>
+	<button onclick="showingOnScreen(5)">5</button>
+	<button onclick="showingOnScreen(6)">6</button>
+	<button onclick="showingOnScreen(7)">7</button>
+	<button onclick="showingOnScreen(8)">8</button>
+	<button onclick="showingOnScreen(9)">9</button>
+	<button onclick="showingOnScreen(0)">0</button>
+	<br><br>
+	<button onclick="inputOperator('+')">+</button>
+	<button onclick="inputOperator('-')">-</button>
+	<button onclick="inputOperator('*')">*</button>
+	<button onclick="inputOperator('/')">/</button>
+	<button onclick="inputEquals()">=</button>
+	<button onclick="inputClear()">C</button>
+	<br><br>
+	<div id="showResult"></div>
+
+
+	<script>
+		let firstNumbers=null;
+		let secondNumbers=null;
+		let referenceNumbers=null;
+		let firstOperator=null;
+
+		function showingOnScreen(number){
+			document.getElementById('showResult').innerHTML+=`${number}`;
+			if (!firstOperator){
+				firstNumbers = document.getElementById('showResult').textContent;
+				referenceNumbers = firstNumbers;
+				console.log(firstNumbers);
+			}
+				else if (firstNumbers && firstOperator){
+					secondNumbers = document.getElementById('showResult').textContent;
+				}
+		}
+
+		function inputEquals(){
+			let finalOutput;
+			if (firstOperator== '+') {finalOutput = firstNumbers + secondNumbers}
+				else if (firstOperator== '-') {finalOutput = firstNumbers - secondNumbers}
+				else if (firstOperator== '*') {finalOutput = firstNumbers * secondNumbers}
+				else if (firstOperator== '/') {finalOutput = firstNumbers / secondNumbers}
+			document.getElementById('showResult').innerHTML=`
+			${firstNumbers} ${firstOperator} ${secondNumbers} = ${finalOutput}`;
+		}
+
+		function inputOperator(operator){
+			if (!firstOperator){
+			firstOperator = operator;
+			document.getElementById('showResult').innerHTML='';
+			}
+			else {return}
+		}
+
+		function inputClear(){
+			document.getElementById('showResult').innerHTML='';
+		}
+
+
+	</script>
+</body>
+</html>

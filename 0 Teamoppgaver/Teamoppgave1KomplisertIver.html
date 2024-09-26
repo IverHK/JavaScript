@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+
+	<style>
+		#board {
+				display: grid;
+				grid-template-columns: repeat(4, 200px); 
+				grid-template-rows: repeat(4, 200px);    
+				gap: 5px; 
+		}
+
+		#board > div {
+				display: flex;
+				justify-content: center; 
+				align-items: center;     
+				border: 1px solid #ccc;
+				background-color: #f0f0f0;
+				cursor: pointer; 
+		}
+
+
+		img {
+				max-width: 100%;
+				max-height: 100%;
+				visibility: hidden; 
+		}
+</style>
+</head>
+<body onload="startBoard();">
+
+	<div id="board"></div>
+
+
+	<script>
+
+		function startBoard(){
+			document.getElementById('board').innerHTML=/*HTML*/`
+					<div onclick='showImage(this)'><img src="img/dog.jpg"alt="dog"/></div>
+					<div onclick='showImage(this)'><img src="img/horse.jpg"alt="dog"/></div>
+					<div onclick='showImage(this)'><img src="img/frog.jpg"/></div>
+					<div onclick='showImage(this)'><img src="img/chicken.jpg"/></div>
+					<div onclick='showImage(this)'><img src="img/spider.jpg"/></div>
+					<div onclick='showImage(this)'><img src="img/frog.jpg"/></div>
+					<div onclick='showImage(this)'><img src="img/spider.jpg"/></div>
+					<div onclick='showImage(this)'><img src="img/tiger.jpg"/></div>
+					<div onclick='showImage(this)'><img src="img/chicken.jpg"/></div>
+					<div onclick='showImage(this)'><img src="img/dog.jpg"/></div>
+					<div onclick='showImage(this)'><img src="img/elephant.jpg"/></div>
+					<div onclick='showImage(this)'><img src="img/cat.gif"/></div>
+					<div onclick='showImage(this)'><img src="img/cat.gif"/></div>
+					<div onclick='showImage(this)'><img src="img/elephant.jpg"/></div>
+					<div onclick='showImage(this)'><img src="img/horse.jpg"/></div>
+					<div onclick='showImage(this)'><img src="img/tiger.jpg"/></div>     
+		`;}
+
+		let currentImage = null
+		let referenceImage = null
+
+		function showImage(click){
+			const image = click.querySelector('img');
+
+			if(image.style.visibility === 'visible'){return;}
+			if(currentImage==null){
+				currentImage = image.src; 
+				referenceImage = image;
+				image.style.visibility = 'visible';
+				} else {
+						if (currentImage === image.src){image.style.visibility = 'visible';
+						}
+							else{referenceImage.style.visibility = 'hidden';}
+					currentImage = null
+					referenceImage = null	
+					}		
+		}
+		
+	</script>
+
+	
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+</head>
+
+<body>
+		<div id="app"></div>
+		<script>
+				// Model
+				let currentColor = { red: 2, green: 200, blue: 100}
+				// View
+				updateView();
+				function updateView() {
+						document.getElementById('app').innerHTML = /*HTML*/`
+						<div style="background-color: rgb(100, 200, 50);">Hei Verden</div>
+					`;}
+
+				// Controller
+				createColorDiv(currentColor);
+				function createColorDiv(currentColor){
+					document.getElementById('app').innerHTML += /*HTML*/`
+					<div style="background-color: rgb(${currentColor.red}, ${currentColor.green}, ${currentColor.blue}); 
+					width: 50px; height: 50px;">Hello World</div>`;
+				}
+
+				createInvertedColor(currentColor);
+				function createInvertedColor(currentColor){
+					currentColor.red = Math.abs(currentColor.red - 255)
+					currentColor.green = Math.abs(currentColor.green - 255)
+					currentColor.blue = Math.abs(currentColor.blue - 255)
+					document.getElementById('app').innerHTML += /*HTML*/`
+					<div style="background-color: rgb(${currentColor.red}, ${currentColor.green}, ${currentColor.blue}); 
+					width: 50px; height: 50px;">Hello World</div>`;
+				}
+
+				createCombinedColor(currentColor);
+				function createCombinedColor(currentColor){
+					currentColor.red = (currentColor.red + Math.abs(currentColor.red - 255)) / 2;
+					currentColor.green = (currentColor.green + Math.abs(currentColor.green - 255)) / 2;
+					currentColor.blue = (currentColor.blue + Math.abs(currentColor.blue - 255)) / 2;
+
+					document.getElementById('app').innerHTML += /*HTML*/`
+					<div style="background-color: rgb(${currentColor.red}, ${currentColor.green}, ${currentColor.blue}); 
+					width: 50px; height: 50px;">Hello World</div>`;
+				}
+
+				let fiveColors = [];
+				let colorOne= [];
+				let colorTwo= [];
+				let colorThree= [];
+				let colorFour= [];
+				let colorFive= [];
+				currentColor = { red: 2, green: 200, blue: 100}
+				// createColors(currentColor);
+
+				function createColors(currentColor){
+					colorOne = {...currentColor};
+
+					colorFive.red = Math.abs(currentColor.red - 255)
+					colorFive.green = Math.abs(currentColor.green - 255)
+					colorFive.blue = Math.abs(currentColor.blue - 255)
+
+					colorThree.red = (colorOne.red + colorFive.red) / 2;
+					colorThree.green = (colorOne.green + colorFive.green) / 2;
+					colorThree.blue = (colorOne.blue + colorFive.blue) / 2;
+
+					colorTwo.red = (colorOne.red + colorThree.red) / 2;
+					colorTwo.green = (colorOne.green + colorThree.green) / 2;
+					colorTwo.blue = (colorOne.blue + colorThree.blue) / 2;
+
+					colorFour.red = (colorFive.red + colorThree.red) / 2;
+					colorFour.green = (colorFive.green + colorThree.green) / 2;
+					colorFour.blue = (colorFive.blue + colorThree.blue) / 2;
+
+					fiveColors.push(colorOne, colorTwo, colorThree, colorFour, colorFive)
+
+					return fiveColors;
+				}
+
+
+
+
+				function createColorsWithFunctions(currentColor) {
+					const invertColor = color => 255 - color;
+					const averageColor = (color1, color2) => (color1 + color2) / 2;
+
+					let colorOne = { ...currentColor }; 
+					let colorFive = {
+							red: invertColor(currentColor.red),
+							green: invertColor(currentColor.green),
+							blue: invertColor(currentColor.blue)
+					};
+
+					let colorThree = {
+							red: averageColor(colorOne.red, colorFive.red),
+							green: averageColor(colorOne.green, colorFive.green),
+							blue: averageColor(colorOne.blue, colorFive.blue)
+					};
+
+					let colorTwo = {
+							red: averageColor(colorOne.red, colorThree.red),
+							green: averageColor(colorOne.green, colorThree.green),
+							blue: averageColor(colorOne.blue, colorThree.blue)
+					};
+
+					let colorFour = {
+							red: averageColor(colorThree.red, colorFive.red),
+							green: averageColor(colorThree.green, colorFive.green),
+							blue: averageColor(colorThree.blue, colorFive.blue)
+					};
+
+					return [colorOne, colorTwo, colorThree, colorFour, colorFive];
+			}
+
+
+				
+		</script>
+</body>
+
+</html>

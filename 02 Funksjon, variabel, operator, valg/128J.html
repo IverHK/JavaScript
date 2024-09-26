@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<Style>
+
+		#app{
+			height: 300px;
+			width: 300px;
+			display: grid;
+			grid-template-columns: repeat(3,1fr);
+			grid-template-rows: repeat(3, 1fr);
+			border: 3px,black, solid;
+		}
+		.square{
+			border: 1px grey solid;
+			align-content: center;
+			align-items: center;
+			text-align: center;
+		}
+
+	</Style>
+
+
+</head>
+<body>
+	<div id="app">
+			<div id="square1" class="square" onclick="moveSquare(this,'square2','square4')">3</div>
+			<div id="square2" class="square" onclick="moveSquare(this,'square1','square3','square5')">2</div>
+			<div id="square3" class="square" onclick="moveSquare(this,'square2','square6')">1</div>
+			<div id="square4" class="square" onclick="moveSquare(this,'square1','square5','square7')">6</div>
+			<div id="square5" class="square" onclick="moveSquare(this,'square2','square4','square6','square8')">5</div>
+			<div id="square6" class="square" onclick="moveSquare(this,'square3','square5','emptySquare')">4</div>
+			<div id="square7" class="square" onclick="moveSquare(this,'square4','square8')">7</div>
+			<div id="square8" class="square" onclick="moveSquare(this,'square5','square7','emptySquare','test')">8</div>
+			<div id="emptySquare" class="square" onclick="moveSquare(this,'square6','square8')"></div>
+	</div>
+	
+	<script>
+
+	function moveSquare(selectedSquare, north, east, south, west){
+			if (document.getElementById(north).innerHTML==''){
+				document.getElementById(north).innerHTML = selectedSquare.innerHTML;
+				selectedSquare.innerHTML = '';
+				console.log(document.getElementById('app').innerHTML);
+				}
+				else if (document.getElementById(east).innerHTML==''){
+					document.getElementById(east).innerHTML = selectedSquare.innerHTML;
+					selectedSquare.innerHTML = '';
+				}
+				else if (document.getElementById(south).innerHTML==''){
+					document.getElementById(south).innerHTML = selectedSquare.innerHTML;
+					selectedSquare.innerHTML = '';
+				}
+				else if (document.getElementById(west).innerHTML==''){
+					document.getElementById(west).innerHTML = selectedSquare.innerHTML;
+					selectedSquare.innerHTML = '';
+				}
+			if (gameFinished()){
+				document.getElementById('app').innerHTML = 'You finished the game!';
+			}
+		}
+
+	function gameFinished() {
+      return (
+        document.getElementById('square1').innerHTML == '1' &&
+        document.getElementById('square2').innerHTML == '2' &&
+        document.getElementById('square3').innerHTML == '3' &&
+        document.getElementById('square4').innerHTML == '4' &&
+        document.getElementById('square5').innerHTML == '5' &&
+        document.getElementById('square6').innerHTML == '6' &&
+        document.getElementById('square7').innerHTML == '7' &&
+        document.getElementById('square8').innerHTML == '8' &&
+        document.getElementById('emptySquare').innerHTML == ''
+      );
+    }
+
+	</script>
+</body>
+</html>

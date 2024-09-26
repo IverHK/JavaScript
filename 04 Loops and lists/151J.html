@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+
+	<div id="app"></div>
+
+	<script>
+		//Model
+		let textInput = '';
+		let longestWord='';
+		let currentVowelCount = '';
+		let vowels = 'aeiouAEIOU';		
+		let emptySpace=' ';
+		let amountOfWords='';
+		let currentWord='';
+		let textLength='';
+		let currentWordEnd;
+		let currentWordStart;
+		let wordWithMostVowels = '';
+		let mostVowelsCount = '';
+		let currentWordLetters='';
+
+		//View
+		viewApp();
+		function viewApp(){
+			document.getElementById('app').innerHTML = /*HTML*/`
+			<input type="text" name="" id="" onchange="textInput=this.value">
+			<button onclick="checkText()">Check text</button>
+			<div id="showingText">Full text:${textInput}</div>
+			<div id="showingText">Amount of words:${amountOfWords}</div>
+			<div id="showingText">Length of words:${textLength}</div>
+			<div id="showingText">Longest word:${longestWord}</div>
+			<div id="showingText">Word with most vocals:${wordWithMostVowels}</div>`
+
+		}
+
+
+		//Controller
+		function checkText(){
+			textLength = textInput.length;
+			amountOfWords = 0; 
+			longestWord = 0;  
+			currentWordStart = 0; 
+			mostVowelsCount = 0;
+			wordWithMostVowels = '';
+			currentVowelCount = 0;
+
+			for(i = 0; i <= textLength; i++){
+				if (textInput.charAt(i) == emptySpace || i === textLength){
+					amountOfWords++;
+					currentWordEnd = i;
+					currentWordSize = currentWordEnd - currentWordStart;
+					currentWordLetters = '';
+					console.log(currentWordStart, currentWordEnd, currentWordSize);
+
+					for (let j = currentWordStart; j < currentWordEnd; j++) {
+						currentWordLetters += textInput.charAt(j);
+						if (vowels.includes(textInput.charAt(j))) {
+							currentVowelCount++;
+							}
+          }
+					if (longestWord < currentWordSize) {
+						longestWord = currentWordSize;
+					}
+					if (currentVowelCount > mostVowelsCount) {
+                mostVowelsCount = currentVowelCount;
+                wordWithMostVowels = currentWordLetters;
+          }
+					currentWordStart = i + 1;
+					currentVowelCount = 0; 
+				}
+			}
+			viewApp();
+		}
+
+	</script>
+</body>
+</html>

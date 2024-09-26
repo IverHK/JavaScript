@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<div>Rock Paper Scissors Game!</div> <br>
+	<div><button onclick="userRock()">Rock</button></div>
+	<div><button onclick="userPaper()">Paper</button></div>
+	<div><button onclick="userScissor()">Scissor</button></div><br>
+	<div id="ShowingResults">Play the Game!</div>
+
+
+	<script>
+		let yourWinCount=0;
+		let computerWinCount=0;
+		let tieCount=0;
+
+		function gameInfo(yourMove , computerMoveResult, gameResult){
+			document.getElementById('ShowingResults').innerHTML=/*HTML*/`
+				Your move: ${yourMove} <br> Computer move: ${computerMoveResult} <br> ${gameResult} <br><br> Wins: ${yourWinCount} <br>
+				Ties; ${tieCount} <br> Losses: ${computerWinCount}`
+		}
+
+		function userRock(){
+			let ComputerMoveIndex = getRandomNumber(1,3);
+			let computerMoveText = computerMove(ComputerMoveIndex);
+			console.log(computerMoveText)
+
+			if (ComputerMoveIndex==1){
+				tieCount++;
+				gameInfo('Rock',computerMoveText, 'Tie!');
+			}
+				else if (ComputerMoveIndex==2){
+					yourWinCount++;
+					gameInfo('Rock', computerMoveText, 'Win!');
+			}
+				else if (ComputerMoveIndex==3){
+					computerWinCount++;
+				gameInfo('Rock', computerMoveText, 'Loose!');
+			}
+		}
+
+		function userPaper(){
+			let ComputerMoveIndex = getRandomNumber(1,3);
+			let computerMoveText = computerMove(ComputerMoveIndex);
+			console.log(computerMoveText)
+
+			if (ComputerMoveIndex==1){
+				yourWinCount++;
+				gameInfo('Paper',computerMoveText, 'Win!');
+			}
+				else if (ComputerMoveIndex==2){
+					computerWinCount++;
+					gameInfo('Paper', computerMoveText, 'Loose!');
+			}
+				else if (ComputerMoveIndex==3){
+					tieCount++;
+					gameInfo('Paper', computerMoveText, 'Tie!');
+			}
+		}
+
+		function userScissor(){
+			let ComputerMoveIndex = getRandomNumber(1,3);
+			let computerMoveText = computerMove(ComputerMoveIndex);
+			console.log(computerMoveText)
+
+			if (ComputerMoveIndex==1){
+				computerWinCount++;
+				gameInfo('Scissor',computerMoveText, 'Loose!');
+			}
+				else if (ComputerMoveIndex==2){
+					tieCount++;
+					gameInfo('Scissor', computerMoveText, 'Tie!');
+			}
+				else if (ComputerMoveIndex==3){
+					yourWinCount++;
+					gameInfo('Scissor', computerMoveText, 'Win!');
+			}
+		}
+
+		function computerMove(ComputerMoveIndex){
+			if (ComputerMoveIndex==1){return'Rock';}
+			else if (ComputerMoveIndex==2){return'Scissor';}
+			else if (ComputerMoveIndex==3){return'Paper';}	;
+		}
+
+		function getRandomNumber(min, max) {
+			return min + Math.floor(Math.random() * (max - min + 1));
+		}
+
+	</script>
+	
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>oppgave '115</title>
+
+<style>
+
+	.header {
+		grid-area: header;
+	}
+	.meny{
+		grid-area: meny;
+	}
+	.hovedinnhold{
+		grid-area: hovedinnhold;
+	}
+	.footer{
+		grid-area: footer;
+	}
+	.fullPage{
+			display: grid;
+			height: 100vh;
+			grid-template-columns: 150px 1fr;
+			grid-template-rows: 200px 1fr 200px;
+			grid-template-areas:"header header"
+													"meny hovedinnhold"
+													"footer footer";
+		}
+
+		.numberUpDown{
+			height: 100px;
+			width: 100px;
+			display: flex;
+			flex-direction:row;
+			align-items: center;
+			justify-content: space-around;
+		}
+
+		.number{
+			font-size: 50px;
+		}
+		.upDown{
+			display: flex;
+			flex-direction:column;
+		}
+
+		.buttonUp{
+			content: '\25B2';
+			height: 28px;
+			margin: 2px;
+		}
+
+		.buttonDown{
+			content: '\25BC'; 
+			height: 28px;
+			margin: 2px;
+
+		}
+
+		.favorittSprok{
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content:baseline;
+		}
+		.valgAlternativer{
+			display: flex;
+			flex-direction: column;
+			margin-left: 40px;
+			margin-top: 20px;
+		}
+	
+</style>
+</head>
+
+<body>
+<div class="fullPage">
+	<div class='header' style="background-color: lightgray">
+		<div class="numberUpDown">
+			<div class="number">
+				5
+			</div>
+			<div class="upDown">
+				<button class="buttonUp">&#9650;</button>
+				<button class="buttonDown">&#9660;</button>
+			</div>
+		</div>
+
+	</div>
+
+	<div class='meny'style="background-color: lightblue">meny</div>
+
+	<div class='hovedinnhold' style="background-color: lightgreen">
+		<div id="app">
+			<h3>Mitt skjema</h3>
+			First Name<br/> <input type="text" id="fname"><br/>
+			Last Name<br/> <input type="text" id="lname"><br/>
+			En til hundre<br/> <input type="range" id="zero2hundred"><br/>
+			Skriv inn et tall<br/> <input type="number" id="lname"><br/>
+
+			<div class="favorittSprok">
+				<div class="spørsmål">
+				Favorittspråk:
+				</div>
+
+				<div class="valgAlternativer">
+					<div class="HTML">
+						<input type="radio" name="fav_language" id="html">
+						<label for="html">HTML</label>
+					</div>
+
+					<div class="CSS">
+						<input type="radio" name="fav_language" id="css">
+						<label for="css">CSS</label>
+					</div>
+
+					<div class="JavaScript">
+						<input type="radio" name="fav_language" id="js">
+						<label for="js">JavaScript</label>
+					</div>
+				</div>
+			
+			</div>
+
+		</div> 
+	</div>
+
+	<div class='footer' style="background-color: lightpink">footer</div>
+</div>	
+
+<script>
+	
+</script>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+<script>
+	showInput();
+
+	function showInputText(){
+		fName = document.getElementById('fNameInput').value;
+		lName = document.getElementById('lNameInput').value;
+
+		document.body.innerHTML=/*HTML*/`
+		<div>
+			<input type="" placeholder=${fName}>
+			<input type="" placeholder=${lName}>
+		</div>
+		<div><button onclick="showInput()">Edit</button></div>`
+	}
+
+	function showInput(){
+		document.body.innerHTML=/*HTML*/`
+		<div>
+			<input type="text" name="" id="fNameInput" placeholder="First Name">
+			<input type="text" name="" id="lNameInput" placeholder="Second Name">
+		</div>
+		<div><button onclick="showInputText()">Register</button></div>`
+	}
+</script>
+
+</body>
+</html>

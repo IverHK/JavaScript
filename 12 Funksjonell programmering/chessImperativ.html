@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        body {
+            background-color: rgb(49, 46, 43);
+            padding: 10px;
+            font-size: 300%;
+        }
+
+        div.board {
+            display: grid;
+            grid-template-columns: repeat(8, 60px);
+            grid-template-rows: repeat(8, 60px);
+        }
+
+        div.black {
+            background-color: rgb(118,150,86);
+        }
+
+        div.white {
+            background-color: rgb(238,238,210);
+        }
+
+        span.whitePiece {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="board" class="board">
+    </div>
+
+    <script>
+        var boardDiv = document.getElementById('board');
+
+        var boardModel = [];
+        for (var squareIndex = 0; squareIndex < 64; squareIndex++) {
+            var rowIndex = Math.floor(squareIndex / 8);
+            var colIndex = squareIndex % 8;
+            var isEvenRow = rowIndex % 2 == 0;
+            var isEvenCol = colIndex % 2 == 0;
+
+            boardModel.push({
+                isBlack: isEvenRow ^ isEvenCol
+            });
+        }
+
+        boardModel[23].piece = { type: 'king', isWhite: true };
+        boardModel[24].piece = { type: 'queen', isWhite: true };
+        boardModel[1].piece = { type: 'king', isWhite: false };
+        boardModel[63].piece = { type: 'queen', isWhite: false };
+
+        show();
+
+        function show() {
+            var html = '';
+            for (var i = 0; i < boardModel.length; i++) {
+                var squareModel = boardModel[i];
+                var content = getPieceCharacter(squareModel.piece);
+                html += `<div class="${squareModel.isBlack ? 'black' : 'white'}">${content}</div>`;
+            }
+            boardDiv.innerHTML = html;
+        }
+
+        function getPieceCharacter(pieceModel) {
+            if (!pieceModel) return '';
+            var html = '';
+            if (pieceModel.type === 'king') html = '♚';
+            if (pieceModel.type === 'queen') html = '♛';
+            if (pieceModel.type === 'rook') html = '♜';
+            if (pieceModel.type === 'bishop') html = '♝';
+            if (pieceModel.type === 'knight') html = '♞';
+            if (pieceModel.type === 'pawn') html = '♟';
+            if (pieceModel.isWhite )
+                html = `<span class="whitePiece">${html}</span>`;
+            return html;
+        }
+    </script>
+</body>
+</html>

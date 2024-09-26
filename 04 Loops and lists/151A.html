@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app"></div>
+
+
+	<script>
+
+		let maxLength = 0;
+		let text = '';
+		let i=0;
+
+
+		showApp();
+		function showApp(){
+			document.getElementById('app').innerHTML=/*HTML*/`
+			<input type="text" id="textInput" placeholder="text">	<br>
+			<input type="number" id="numberInput" placeholder="number">	<br>
+			<button onclick="repeatNumber()">Repeat!</button>	<br>
+			<div id="showingText">${text}</div>`; 
+		}
+
+		function repeatNumber(){
+			maxLength = document.getElementById('numberInput').value -1;
+			text = document.getElementById('textInput').value;
+			while (i<maxLength){
+				i++;
+				text += text;
+				 showApp();}
+		}
+
+	</script>
+
+
+</body>
+</html>

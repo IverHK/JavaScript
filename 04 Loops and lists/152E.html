@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+</head>
+
+<body>
+		<div id="app"></div>
+		<script>
+				// Model
+				let numberList = [0,1,2,3,4,5,200];
+
+				// View
+				updateView();
+				function updateView() {
+						document.getElementById('app').innerHTML = /*HTML*/`
+						`;
+				}
+
+				// Controller
+				function myFunction(){
+					for (i=0;i<numberList.length;i++){
+						if (numberList[i]>=numberList[i+1]){
+							return false;
+						}
+					}
+					return true	
+				}
+					
+
+
+
+				
+		</script>
+</body>
+
+</html>

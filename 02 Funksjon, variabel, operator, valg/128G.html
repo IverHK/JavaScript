@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="board"></div>
+
+    <script>
+        function showBoard(){
+            document.getElementById('board').innerHTML=
+            showBlackForce();
+            lightSquareFirst();
+            darkSquareFirst();            
+            lightSquareFirst();
+            darkSquareFirst();
+            darkSquareForce();
+        }
+
+
+
+
+        
+        function showBlackForce(){`
+            <div class="lightSquare blackPiece">♜</div>
+            <div class="darkSquare blackPiece">♞</div>
+            <div class="lightSquare blackPiece">♝</div>
+            <div class="darkSquare blackPiece">♛</div>
+            <div class="lightSquare blackPiece">♚</div>
+            <div class="darkSquare blackPiece">♝</div>
+            <div class="lightSquare blackPiece">♞</div>
+            <div class="darkSquare blackPiece">♜</div>
+    
+            <div class="darkSquare blackPiece">♟</div>
+            <div class="lightSquare blackPiece">♟</div>
+            <div class="darkSquare blackPiece">♟</div>
+            <div class="lightSquare blackPiece">♟</div>
+            <div class="darkSquare blackPiece">♟</div>
+            <div class="lightSquare blackPiece">♟</div>
+            <div class="darkSquare blackPiece">♟</div>
+            <div class="lightSquare blackPiece">♟</div>`
+        }
+
+        function lightSquareFirst(){`
+            <div class="lightSquare"></div>
+            <div class="darkSquare"></div>
+            <div class="lightSquare"></div>
+            <div class="darkSquare"></div>
+            <div class="lightSquare"></div>
+            <div class="darkSquare"></div>
+            <div class="lightSquare"></div>
+            <div class="darkSquare"></div>`
+        }
+
+        function darkSquareFirst(){
+            `<div class="darkSquare"></div>
+            <div class="lightSquare"></div>
+            <div class="darkSquare"></div>
+            <div class="lightSquare"></div>
+            <div class="darkSquare"></div>
+            <div class="lightSquare"></div>
+            <div class="darkSquare"></div>
+            <div class="lightSquare"></div>`
+        }
+        function darkSquareForce(){`
+            <div class="lightSquare whitePiece">♟</div>
+            <div class="darkSquare whitePiece">♟</div>
+            <div class="lightSquare whitePiece">♟</div>
+            <div class="darkSquare whitePiece">♟</div>
+            <div class="lightSquare whitePiece">♟</div>
+            <div class="darkSquare whitePiece">♟</div>
+            <div class="lightSquare whitePiece">♟</div>
+            <div class="darkSquare whitePiece">♟</div>
+    
+            <div class="darkSquare whitePiece">♜</div>
+            <div class="lightSquare whitePiece">♞</div>
+            <div class="darkSquare whitePiece">♝</div>
+            <div class="lightSquare whitePiece">♛</div>
+            <div class="darkSquare whitePiece">♚</div>
+            <div class="lightSquare whitePiece">♝</div>
+            <div class="darkSquare whitePiece">♞</div>
+            <div class="lightSquare whitePiece">♜</div>
+            `
+        }
+    </script>
+</body>
+</html>

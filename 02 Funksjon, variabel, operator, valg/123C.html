@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <style>
+        .trafficLight {
+            width: 3rem;
+            height: 10rem;
+            display: flex;
+            flex-direction: column;
+            background-color: black;
+            padding: 1rem;
+            gap: 1rem;
+        }
+
+        .light {
+            background-color: red;
+            border-radius: 50%;
+            width: 3rem;
+            height: 3rem;
+        }
+    </style>
+</head>
+<body>
+
+<div id="trafficLightPhase"></div>
+<br>
+<button onclick="goToNextLight()">Next</button>
+
+
+<script>
+
+drawTrafficLight(true, false, false);
+
+function drawTrafficLight(red, yellow, green){
+	let redColor='red';
+	let yellowColor='yellow';
+	let greenColor='green';
+	if(red==false){redColor='grey';}
+	if(yellow==false){yellowColor='grey';}
+	if(green==false){greenColor='grey';}
+	document.getElementById('trafficLightPhase').innerHTML = /*HTML*/ `
+		<div class="trafficLight">
+			<div class="light" style="background-color: ${redColor};"></div>
+			<div class="light" style="background-color: ${yellowColor};"></div>
+			<div class="light" style="background-color: ${greenColor};"></div>
+		</div>`;
+}
+
+let phase = 0
+function goToNextLight(){
+	document.getElementById('trafficLightPhase').innerHTML = ''
+
+	if (phase==0)	{drawTrafficLight(true, false, false);
+			phase++;}
+		else if (phase==1) {drawTrafficLight(true, true, false);
+			phase++;}
+		else if (phase==2) {drawTrafficLight(false, false, true);
+			phase++;}
+		else if (phase==3) {drawTrafficLight(false, true, false);
+			phase=0;};
+		}
+
+
+
+/*
+function drawTrafficLight(red, yellow, green){
+	document.getElementById('trafficLightPhase').innerHTML =  `
+		<div class="trafficLight">
+			<div class="light" style="background-color: ${red==true?'red':'grey'};"></div>
+			<div class="light" style="background-color: ${yellow==true?'yellow':'grey'};"></div>
+			<div class="light" style="background-color: ${green==true?'green':'grey'};"></div>
+		</div>`;
+}
+*/
+
+</script>
+
+
+</body>
+</html>

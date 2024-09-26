@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #board{
+            display: grid;
+            grid-template-columns: repeat(4, 200px);
+            grid-template-rows: repeat(4, 200px);
+        }
+
+        #board > div{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid gray;
+            background-color: darkgray;
+        }
+        img{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!--
+        1: hardkode HTML - fått av meg
+        2: sette HTML fra JavaScript
+    -->
+    <div id="board">
+    </div>
+
+    <script>
+        startPage();
+        function startPage(){
+            document.getElementById('board').innerHTML = /*HTML*/`
+                <div onclick="showDog1a()"></div>                     
+                <div onclick="showDog1b()"></div>            
+                <div onclick="showFrog1a()"></div>            
+                <div onclick="showDogFrog1b()"></div>            
+                      
+            `;
+        }
+
+        function showDog1a(){
+            document.getElementById('board').innerHTML = /*HTML*/`
+                <div><img src="img/dog.jpg"/></div>        
+                <div onclick="showDog2()"></div>            
+                <div onclick="startPage()"></div>            
+                <div onclick="startPage()"></div>                  
+            `;
+        }
+
+        function showDog1b(){
+            document.getElementById('board').innerHTML = /*HTML*/`
+                <div  onclick="showDog2()"></div>           
+                <div><img src="img/dog.jpg"/></div>            
+                <div onclick="startPage()"></div>            
+                <div onclick="startPage()"></div>                     
+            `;
+        }
+
+        function showDog2(){
+            document.getElementById('board').innerHTML = /*HTML*/`
+                <div><img src="img/dog.jpg"/></div>         
+                <div><img src="img/dog.jpg"/></div>            
+                <div onclick="showDogAndFrog1a()"></div>                  
+                <div onclick="showDogAndFrog1b()"></div>                  
+            `;
+        }
+
+
+
+        function showFrog1a(){
+            document.getElementById('board').innerHTML = /*HTML*/`        
+                <div onclick="startPage()"></div>            
+                <div onclick="startPage()"></div>  
+								<div><img src="img/frog.jpg"/></div>        
+                <div onclick="showFrog2()"></div>                    
+            `;
+        }
+
+        function showFrog1b(){
+            document.getElementById('board').innerHTML = /*HTML*/`          
+						<div onclick="startPage()"></div>  
+						<div onclick="startPage()"></div>  
+						<div  onclick="showFrog2()"></div>           
+            <div><img src="img/frog.jpg"/></div>                  
+            `;
+        }
+
+        function showFrog2(){
+            document.getElementById('board').innerHTML = /*HTML*/`          
+                <div onclick="showFrogAndDog1a()"></div>                  
+                <div onclick="showFrogAndDog1b()"></div>
+								<div><img src="img/Frog.jpg"/></div>                  
+                <div><img src="img/Frog.jpg"/></div>                  
+            `;
+        }
+				
+
+				function showFrogAndDog1a(){
+            document.getElementById('board').innerHTML = /*HTML*/`          
+								<div><img src="img/Dog.jpg"/></div>                  
+								<div onclick="showAll()"></div>
+								<div><img src="img/Frog.jpg"/></div>                  
+                <div><img src="img/Frog.jpg"/></div>                  
+            `;
+        }
+
+				function showFrogAndDog1b(){
+            document.getElementById('board').innerHTML = /*HTML*/`          
+                <div onclick="showAll()"></div>                  
+								<div><img src="img/Dog.jpg"/></div>                  
+								<div><img src="img/Frog.jpg"/></div>                  
+                <div><img src="img/Frog.jpg"/></div>                  
+            `;
+        }
+
+				function showDogAndFrog1a(){
+            document.getElementById('board').innerHTML = /*HTML*/`                         
+								<div><img src="img/Dog.jpg"/></div>   
+								<div><img src="img/Dog.jpg"/></div>                  
+								<div><img src="img/Frog.jpg"/></div>      
+								<div onclick="showAll()"></div>                          
+            `;
+        }
+				function showDogAndFrog1b(){
+            document.getElementById('board').innerHTML = /*HTML*/`                         
+								<div><img src="img/Dog.jpg"/></div>   
+								<div><img src="img/Dog.jpg"/></div>         
+								<div onclick="showAll()"></div>             
+								<div><img src="img/Frog.jpg"/></div>                  `;
+        }
+
+        function showAll(){
+            document.getElementById('board').innerHTML = /*HTML*/`
+                <div><img src="img/dog.jpg"/></div>
+                <div><img src="img/dog.jpg"/></div>
+                <div><img src="img/frog.jpg"/></div>
+                <div><img src="img/frog.jpg"/></div>      
+            `;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="clickerPanel.js"></script>
+    <!-- <script src="dataFetcher.js"></script> -->
+</head>
+
+<body>
+    <clicker-panel id="cp1"></clicker-panel>
+    <clicker-panel id="cp2" startvalue="10"></clicker-panel>
+
+    <script>
+        let cp1 = document.getElementById('cp1');
+        let cp2 = document.getElementById('cp2');
+        cp1.onReached10 = function() {
+            cp2.boost();
+        };
+        //cp1.startTimer(fetchData);
+    </script>
+</body>
+
+</html>

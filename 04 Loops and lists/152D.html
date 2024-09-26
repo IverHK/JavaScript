@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+</head>
+
+<body>
+		<div id="app"></div>
+		<script>
+				// Model
+				let variable = '';
+				let textInput='';
+				let currentText='';
+				let compressedText='';
+				let i = 0;
+				let splittedText = '';
+				let allowedLetters='ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅabcdefghijklmnopqrstuvwxyzæøå'
+				let words = [];
+				let wordsCounts =[];
+				let listedWords=[];
+
+
+				// View
+				updateView();
+				function updateView() {
+					document.getElementById('app').innerHTML=/*HTML*/`
+					<textarea name="" id="textInput" oninput="currentText=this.value"></textarea><br>
+					<button onclick="checkText()">Check text</button>	<br>
+					<div>Original text: ${currentText}</div>
+					<div>Compressed text: ${compressedText}</div>
+					<div>Splitted text: ${splittedText}</div>
+					<div>List of words: index, word, count:</div>
+					<div>${listedWords}</div>
+					`;
+				}
+
+				// Controller
+				function checkText(){
+					for(i=0;i<currentText.length;i++){
+						let currentCharacter = currentText.charAt(i);
+						if (allowedLetters.includes(currentText.charAt(i))){
+							compressedText += currentCharacter; 
+						}
+					}
+					splittedText = currentText.split(" ")
+					for (j=0;j<splittedText.length;j++){
+						if (words.indexOf(splittedText[j]) !== -1){
+							wordsCounts[words.indexOf(splittedText[j])]++
+						}
+						else {words.push(splittedText[j]);
+									wordsCounts.push(1)
+						}
+					}
+					for (l=0;l<words.length;l++){
+						let index = l;
+						let summaryWord = words[l];
+						let summaryCount = wordsCounts[l];
+						let summaryInfo = index + ' ' + summaryWord + ' ' + summaryCount;
+						listedWords.push(summaryInfo)
+					}
+					updateView();
+				}
+		
+				
+		</script>
+</body>
+
+</html>

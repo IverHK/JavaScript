@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+			div.square {
+					border: 1px solid gray
+			}
+
+			div.board {
+					display: grid;
+					grid-template-columns: repeat(2, 10rem);
+					grid-template-rows: repeat(2, 10rem);
+			}
+
+			div.buttons {
+					width: 20rem;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+			}
+
+			img {
+					width: 90%;
+			}
+
+			div.square{
+					display: flex;
+					align-items: center;
+					justify-content: center;
+			}
+	</style>
+</head>
+
+<body>
+
+		<div id="app">
+			<div class="board">
+			</div>
+			<div class="buttons">
+			</div>
+		</div>
+
+	<script>
+	
+		let getPosition = 0;
+		const size = 4;
+		const pattern = '<div class="square"></div>';
+		let disabledDown='';
+		let disabledUp='';
+		let disabledLeft='';
+		let disabledRight='';
+
+
+		showBoard(getPosition,disabledDown,disabledUp,disabledLeft, disabledRight);
+		function showBoard(){
+			document.getElementsByClassName('board')[0].innerHTML = '';
+			const lengthPart1 = getPosition;
+			addEmptySquares(lengthPart1);
+			const part2 = '<div class="square" id="squareGet"><img src="https://getacademy.no/hubfs/GET_RGB_logo-01-2.png"></div>';
+			document.getElementsByClassName('board')[0].innerHTML+= part2;
+			const lengthPart3 = size - (getPosition + 1);
+			addEmptySquares(lengthPart3);
+
+			if (getPosition==0){
+				disabledDown='';
+				disabledUp='disabled';
+				disabledLeft='disabled';
+				disabledRight='';}
+				else if (getPosition==1){
+				disabledDown='';
+				disabledUp='disabled';
+				disabledLeft='';
+				disabledRight='disabled';}
+				else if (getPosition==2){
+				disabledDown='disabled';
+				disabledUp='';
+				disabledLeft='disabled';
+				disabledRight='';}
+				else if (getPosition==3){
+				disabledDown='disabled';
+				disabledUp='';
+				disabledLeft='';
+				disabledRight='disabled';};
+			
+			document.getElementsByClassName('buttons')[0].innerHTML= /*HTML*/`
+						<div class="buttons">
+							<button onclick="moveGetUp()"${disabledUp}>▲</button>
+							<div>
+								<button onclick="moveGetLeft()"${disabledLeft}>◀</button>
+								<button onclick="moveGetRight()"${disabledRight}>▶</button>
+							</div>
+							<button onclick="moveGetDown()" ${disabledDown} >▼</button>
+						</div>`;
+		}
+		
+		function addEmptySquares(sizeLength){
+			const emptySquares = ''.padEnd(pattern.length * sizeLength, pattern);
+			document.getElementsByClassName('board')[0].innerHTML+= emptySquares;
+		}
+
+
+		function moveGetUp(){
+			if (getPosition == 2 || getPosition ==3){ 
+				getPosition-=2;}
+			showBoard();
+		}
+		function moveGetDown(getPostion){
+			if (getPosition == 0 || getPosition ==1){ 
+				getPosition+=2;}
+			showBoard();
+		}
+		function moveGetRight(getPostion){
+			if (getPosition == 0 || getPosition ==2){ 
+				getPosition++;}
+			showBoard();
+		}
+		function moveGetLeft(getPostion){
+			if (getPosition == 1 || getPosition ==3){ 
+			getPosition--;
+		
+			}
+			showBoard();
+		}
+
+
+
+	</script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+
+	</style>
+
+</head>
+<body>
+	<button onclick="makeBiggerText()" id="TextBigger">større tekst</button><br>
+	<button onclick="makeSmallerText()" id="TextSMaller">mindre tekst</button><br>
+	<select onchange="selectFontFamily(this.value)">
+		<option>Arial</option>
+		<option>Verdana</option>
+		<option>Tahoma</option>
+		<option>Trebuchet MS</option>
+		<option>Times New Roman</option>
+		<option>Georgia</option>
+		<option>Garamond</option>
+		<option>Courier New</option>
+		<option>Brush Script MT</option>
+</select>
+
+<div>
+
+	<div>
+		<button onclick="colorPluss('red')">red+</button>
+		<button onclick="colorMinus('red')">red-</button>
+	</div>
+	<div>
+		<button onclick="colorPluss('green')">green+</button>
+		<button onclick="colorMinus('green')">green-</button>
+	</div>
+	<div>
+		<button onclick="colorPluss('blue')">blue+</button>
+		<button onclick="colorMinus('blue')">blue-</button>
+	</div>
+</div>
+	<div id="pageText" style="font-size: 40px; background-color:rgb(125, 125, 125)">en kort tekst
+	</div>
+
+	<script>
+	let currentFontSize=40;
+	let redValue = 125;
+	let greenValue = 125;
+	let blueValue = 125;
+	
+		function colorMinus(colorValue){
+			if (colorValue==='red')
+			{redValue-=10};
+			if (colorValue==='green')
+			{greenValue-=10}
+			if (colorValue==='blue')
+			{blueValue-=10};
+			document.getElementById('pageText').style.backgroundColor = `rgb(${redValue}, ${greenValue}, ${blueValue})`;
+		}
+
+		function colorPluss(colorValue){
+			if (colorValue==='red')
+			{redValue+=10};
+			if (colorValue==='green')
+			{greenValue+=10}
+			if (colorValue==='blue')
+			{blueValue+=10};
+			document.getElementById('pageText').style.backgroundColor = `rgb(${redValue}, ${greenValue}, ${blueValue})`;
+		}
+
+		function makeBiggerText(){
+			currentFontSize+=5;
+			document.getElementById('pageText').innerHTML=`
+			<div id="pageText" style="font-size: ${currentFontSize}px;">en kort tekst</div>
+	`}
+
+	function makeSmallerText(){
+			currentFontSize-=5;
+			document.getElementById('pageText').innerHTML=`
+			<div id="pageText" style="font-size: ${currentFontSize}px;">en kort tekst</div>`;
+	}
+	function selectFontFamily(fontFamily){
+		document.getElementById('pageText').style.fontFamily = `${fontFamily}`;
+	}
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function factorial(n) {
+        //     if (n <= 1) {
+        //         return 1;
+        //     } else {
+        //         return n * factorial(n - 1);
+        //     }
+        // }
+
+				function factorial2(n) {
+            return n == 1 ? 1 : n * factorial2(n - 1);
+        }
+
+        function factorial3(n) {
+            let product = 1;
+            for (let factor = 1; factor <= n; factor++) {
+                product *= factor;
+								console.log(product);
+            }
+            return product;
+        }
+
+        
+				function factorial4(n) {
+					console.log(`starter n=${n}`);
+					if (n <= 1) {
+							console.log(`avslutter n=${n} => 1`);
+							return 1;
+					} else {  
+							console.log(`kaller meg selv med n=${n-1}`);              
+							const previousFactorial = factorial4(n - 1);
+							console.log(`fikk tilbake at ${n-1}! er ${previousFactorial}`);              
+							const product = n * previousFactorial;
+							console.log(`avslutter n=${n} => ${product}`);
+							return product;
+					}
+        }
+        
+
+
+    </script>
+</body>
+
+</html>

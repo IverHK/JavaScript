@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+
+	<input type="number" id="cicleInputX">
+	<button onclick="addCircleFromInput()">sirkel fra input X</button>
+	<input type="number" id="cicleInputY">
+	<button onclick="addCircleFromInputY()">sirkel fra input Y</button>
+	<input type="text" id="textInput">
+	<button onclick="BackroundColorButton()"> bakgrunnsfarge(engelsk)</button>
+	<input type="text" id="colorInput">
+	<button onclick="frontColorButton()"> kulefarge	</button>
+	<button onclick="addCircle('30')">Legg til sirkel 30</button>
+	<button onclick="addCircle('70')">Legg til sirkel 70</button>
+	<button onclick="CircleFromXY()">sirkel fra X og Y</button>
+	<button onclick="addSquare()">square</button>
+
+<br/>
+<svg 
+  id="mySvg"
+  width="800" 
+  height="600" 
+  style="background-color: lightgray;">
+</svg>
+<script>
+
+  function addCircle(xParameter="100", yParameter="200", inputColor="green") {
+      document.getElementById('mySvg').innerHTML += /*HTML*/`
+          <circle class="myCircle" cx="${xParameter}" cy="${yParameter}" r="40" stroke="green" stroke-width="4" fill="${inputColor}" />            
+      `;
+	}
+
+	function addCircleFromInput(){
+			var cicleInputX= document.getElementById('cicleInputX').value;
+				addCircle(cicleInputX, undefined);
+	}
+
+	function addCircleFromInputY(){
+			var cicleInputY= document.getElementById('cicleInputY').value;
+				addCircle(undefined, cicleInputY);
+	}
+
+	function CircleFromXY(){
+		var cicleInputX= document.getElementById('cicleInputX').value;
+		var cicleInputY= document.getElementById('cicleInputY').value;
+			addCircle(cicleInputX, cicleInputY);
+	}
+
+	function BackroundColorButton(){
+		let inputBackroundColor = document.getElementById('textInput').value;
+		let svgElement = document.getElementById('mySvg');            
+      svgElement.style.backgroundColor = inputBackroundColor;
+}
+
+	function frontColorButton(){
+		var inputColor = document.getElementById('colorInput').value;
+			addCircle(undefined, undefined, inputColor);
+}
+
+	function addSquare(){
+		document.getElementById('mySvg').innerHTML += /*HTML*/`
+		<rect width="200" height="100" x="10" y="10" rx="20" ry="20" fill="blue" />
+      `;
+	}
+
+
+
+
+</script>
+
+</body>
+</html>

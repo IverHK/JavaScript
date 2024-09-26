@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+
+	<div id="cart">
+	</div>
+	<div id="gridSystem"></div>
+
+
+
+	<script>
+
+	console.log(shoppingBag('blas', 2, 100));
+		
+		function shoppingBag(productName, productAmount, productPrice){
+			return (productAmount + 'stk. ' + productName + ' à ' + productPrice 
+				+ 'kr = ' + (productAmount * productPrice) + 'kr.');
+		}
+
+		console.log(celciusToFahrenheit(100));
+
+		function celciusToFahrenheit(celcuis){
+			return ('That is ' + (celcuis*9/5+32) + ' fahrenheit.');
+		}
+
+
+		console.log(fahrenheitToCelcius(100));
+		function fahrenheitToCelcius (fahrenheit){
+			return ('That is '+(fahrenheit-32)*5/9)+' celcius.';
+		}
+
+		console.log(temperatureConverter('celcius',200));
+		console.log(temperatureConverter('fahrenheit',200));
+
+		function temperatureConverter(typeOfTemperature, temperature){
+			if (typeOfTemperature=='celcius'){
+				return ('That is ' + (temperature*9/5+32) + ' fahrenheit.');
+			}
+			if (typeOfTemperature=='fahrenheit'){
+				return ('That is '+(temperature-32)*5/9)+' celcius.';
+			}
+		}
+
+
+		console.log(createDiv('Hei','blue', 'white'));
+		console.log(createDiv('halla'));
+		console.log(createGrid(2,2,
+								createDiv('hei','red','green')
+								+ createDiv('på')
+								+createDiv('deg')
+								+createDiv('du')
+								));
+		makeGridSystem();
+			function createDiv(text, backgroundColor='', foregroundColor=''){/*HTML*/
+			if (backgroundColor && foregroundColor) {
+			return (`<div style="background-color:${backgroundColor};  color: ${foregroundColor};">${text}</div>
+			`)}
+			else {
+				return (`<div> ${text} </div>`)}
+			}
+
+
+	
+		function makeGridSystem(){
+			document.getElementById('gridSystem').innerHTML=
+			createGrid(2,2,
+								createDiv('hei','red','green')
+								+ createDiv('på','yellow','black')
+								+createDiv('deg')
+								+createDiv('du')
+								);
+		}
+
+		function createGrid(columnCount, rowCount, innerHtml){
+			return (
+			`<div style="display: grid; grid-template-columns: repeat(${columnCount},
+			 auto);grid-template-rows: repeat(${rowCount}, auto)"> ${innerHtml}
+			</div>`)
+		;}
+
+	</script>
+
+
+</body>
+</html>

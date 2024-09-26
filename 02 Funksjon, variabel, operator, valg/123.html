@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+
+		<div id="ifCheckBoxes"> 	</div>
+		<br>
+
+
+		<div id="fluidBackground">	En til hundre<br> 
+		<input type="range" id="zero2hundred" min="0" max="100" onchange="changeColor()"></div>
+
+	<script>
+		function changeColor(){
+			document.getElementById('fluidBackground').style.backgroundColor = '';
+
+			let chosenColor = document.getElementById('zero2hundred').value;
+				if (chosenColor <= 30)
+					{document.getElementById('fluidBackground').style.backgroundColor = 'red';}
+					else if (chosenColor>=70)
+						{document.getElementById('fluidBackground').style.backgroundColor = 'green'}
+					else 
+						{document.getElementById('fluidBackground').style.backgroundColor = 'yellow'};
+			console.log("Chosen color value:", chosenColor);
+		}
+
+		createElement('vehicle1','bike');
+		createElement('vehicle2', 'car');
+		createElement('vehicle3','boat');
+		function createElement(vehicleId,typeOfVehicle){
+			document.getElementById('ifCheckBoxes').innerHTML+=/*HTML*/`
+			<input type="checkbox" id="${vehicleId}" name="${vehicleId}" value="${typeOfVehicle}">
+			<label id="checkBoxText" for="${vehicleId}"> I have a ${typeOfVehicle}</label><br/>`; 
+				if (vehicleId==='vehicle1')
+					{document.getElementById('checkBoxText').innerHTML= `I have a bike`};
+				if (vehicleId==='vehicle2')
+					{document.getElementById('checkBoxText').innerHTML= `I have a car`};
+				if (vehicleId==='vehicle2') 
+					{document.getElementById('checkBoxText').innerHTML= `I have a boat`;}		
+		}
+
+
+	</script>
+
+</body>
+</html>

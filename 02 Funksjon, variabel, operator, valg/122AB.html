@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+		<style>
+			#board {
+					display: grid;
+					grid-template-columns: repeat(8, 100px);
+					grid-template-rows: repeat(8, 100px);
+			}
+
+			#board>div {
+					border: 1px solid lightblue;
+			}
+
+			.selected {
+					background-color: yellow;
+			}
+
+			button {
+				font-size: 50px;
+			}
+			#upButtonStyle{
+				width: 43px;
+				margin-left: 48px;
+				margin-bottom: 2px;
+			}
+	</style>
+</head>
+<body>
+	<div id="board"></div>
+	<div></div>
+	<div>
+		<button onclick="upButton()"id="upButtonStyle">^</button>
+		<br>
+		<button onclick="leftButton()"><</button>
+		<button onclick="downButton()">v</button>
+		<button onclick="rightButton()" id="buttonRight">></button>
+
+	</div>
+	
+
+	<script>
+
+		let selectedSquareIndex = 7;
+		const size = 64;
+		const pattern = '<div></div>';
+
+		showBoard();
+		function showBoard(){
+			document.getElementById('board').innerHTML = '';
+			const lengthPart1 = selectedSquareIndex;
+			addEmptySquares(lengthPart1);
+			const part2 = '<div class="selected"></div>';
+			document.getElementById('board').innerHTML+= part2;
+			const lengthPart3 = size - (selectedSquareIndex + 1);
+			addEmptySquares(lengthPart3);
+		}
+		
+		function addEmptySquares(sizeLength){
+			const emptySquares = ''.padEnd(pattern.length * sizeLength, pattern);
+			document.getElementById('board').innerHTML+= emptySquares;
+		}
+
+		function leftButton(){
+			selectedSquareIndex --;
+			showBoard();
+		}
+		function rightButton(){
+			const lastColumnIndices = [7, 15, 23, 31, 39, 47, 55, 63];
+			if (lastColumnIndices.includes(selectedSquareIndex))
+			{document.getElementById('buttonRight').innerHTML=Disabled;}
+			//(selectedSquareIndex===lastColumnIndices){buttonRight:Disabled}
+			else{
+			selectedSquareIndex ++;
+			showBoard();}
+		}
+		function upButton(){
+			selectedSquareIndex = selectedSquareIndex-8;
+			showBoard();
+		}
+		function downButton(){
+			selectedSquareIndex = selectedSquareIndex+8;
+			showBoard();
+		}
+
+		
+	/*showBoard();
+		function showBoard(){
+			const lengthPart1 = selectedSquareIndex;
+			const pattern = '<div></div>';
+			const part1 = ''.padEnd(pattern.length * lengthPart1, pattern);
+			const part2 = '<div class="selected"></div>';
+			const lengthPart3 = size - (selectedSquareIndex + 1);
+			const part3 =''.padEnd(pattern.length * lengthPart3, pattern);
+			document.getElementById('board').innerHTML+= part2+part3;
+		}
+*/
+	</script>
+
+
+
+</body>
+</html>

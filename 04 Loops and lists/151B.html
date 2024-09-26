@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app"></div>
+
+
+	<script>
+
+		let number1 = 0;
+		let number2 = 0;
+		let number3 = 0;
+		let i = 0;
+		let showingText='';
+
+
+
+		showApp();
+		function showApp(){
+			document.getElementById('app').innerHTML=/*HTML*/`
+			<input type="number" id="numberInput1" placeholder="start value">	<br>
+			<input type="number" id="numberInput2" placeholder="ending value">	<br>
+			<input type="number" id="numberInput3" placeholder="stepping value">	<br>
+
+			<button onclick="repeatNumber()">Loop It!</button>	<br>
+			<div id="showingText">${showingText}</div>`; 
+		}
+
+		function repeatNumber(){
+			number1 = parseInt(document.getElementById('numberInput1').value);
+			number2 = parseInt(document.getElementById('numberInput2').value)+1;
+			number3 = parseInt(document.getElementById('numberInput3').value);
+	
+			for (i=number1;i < number2 ;i+=number3){
+				if (number3 <=0) return;
+				showingText+=i + ' ';
+				showApp()
+			}
+	
+				
+
+		}
+
+	</script>
+
+
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .header,
+      .todo-container {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+
+      .header div,
+      .todo-container div {
+        flex: 1;
+        text-align: center;
+        font-weight: bold;
+      }
+      button:hover {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app"></div>
+		<div id="inputInfo"></div>
+    <script>
+      // Model
+      let todoList =[];
+
+				let inputInfo;
+				let editedTask;
+				let availableResponsible='';
+				let selectedPerson;
+				let updatedTodoList=[];
+				let showAll=null;
+				let listOfDoneDate=[];
+				let startingIndex=0;
+				let currentlyShowing='';
+				let pageSize=10;
+				let pageCount = Math.ceil(todoList.length / pageSize);
+    	  let endIndex = Math.min(startingIndex + pageSize, todoList.length);
+
+				let currentlyShowingButton = `<br> <button onclick="filterPaging(${startingIndex + pageSize})">Next page</button><br>`;
+				let html = /*HTML*/`
+          <div class="header">
+            <div>Task</div>
+            <div>Date finsihed</div>
+            <div>Responsible</div>
+            <div>Configuration</div>
+          </div>`;
+
+
+      // View
+			addTask("wash dishes", '', "John");
+			addTask("buy groceries", '', "Alice");
+			addTask("study math", '', "John");
+			addTask("exercise", '', "Emma");
+			addTask("call mom", '', "David");
+			addTask("water plants", '', "Sophia");
+			addTask("complete report", '', "James");
+			addTask("fix the car", '', "Lily");
+			addTask("organize files", '', "John");
+			addTask("schedule meeting", '', "Olivia");
+			addTask("harvest", '', "John");
+
+			
+      function updateView() {
+        htmlList='';
+        if(todoList.length>0){
+          for (i=0;i<todoList.length;i++){
+            htmlList += /*HTML*/`
+            <div class="todo-container">
+              <div>${todoList[i].task}</div>
+              <div>${todoList[i].doneDate}</div>
+              <div>${todoList[i].responsible}</div>
+							<div><button ${todoList[i].checked} onclick="taskDone(${i})">✔</button>
+         			<button onclick="removeTask(${i})">🗑️</button>
+       			  <button onclick="editTask(${i})">✏️</button>
+								</div>
+            </div>`;
+          } 
+        }
+        htmlBottom = /*HTML*/`
+        <br><br><div>
+          <button onclick="createNewTask()">Create new task</button>
+          <button onclick="sortByDate()">Sort by date</button>
+					<button onclick="selectResponsible()">View selected person</button> ${availableResponsible}
+        </div><br> 
+				<div>${inputInfo??''}</div>
+				${currentlyShowingButton}`;
+
+        document.getElementById("app").innerHTML = html + htmlList + htmlBottom;
+      }
+
+      // Controller
+      function addTask(task, doneDate, responsible, checked) {
+        todoList.push({
+          task: task,
+          doneDate: doneDate,
+          responsible: responsible,
+          checked: checked
+        })
+        updateView();
+      }
+
+      function taskDone(index) {
+        todoList[index].checked = 'disabled';
+        todoList[index].doneDate = new Date().toISOString();
+        updateView();
+      }
+
+			function removeTask(index){
+				todoList.splice(index,1)
+				updateView();
+			}
+
+			function createNewTask(){
+				inputInfo=/*HTML*/`
+				<div>
+					<input type="text" placeholder="Task" onchange="taskInput=this.value"> 
+					<input type="text" placeholder="Person responsible" onchange="responsibleInput=this.value"> 
+						<button onclick="addNewTask(taskInput, responsibleInput)">Add to list</button>
+						<button onclick="inputInfo=''; updateView();">Cancel</button>
+					</div>`
+				updateView();
+			}
+
+			function addNewTask(taskInput, responsibleInput){
+				inputInfo='';
+				addTask(taskInput, '', responsibleInput)
+			}
+
+			function editTask(index){
+				indexForEditing=index;
+
+
+				inputInfo=/*HTML*/`
+				<div>
+					<input type="text" placeholder="${todoList[index].task}" onchange="taskInput=this.value"> 
+					<input type="text" placeholder="${todoList[index].responsible}" onchange="responsibleInput=this.value"> 
+						<button onclick="makeEditTaskChanges(indexForEditing, taskInput, responsibleInput)">Make Changes</button>
+						<button onclick="inputInfo=''; updateView();">Cancel</button>
+					</div>`
+				updateView();
+			}
+
+			function makeEditTaskChanges(index, taskInput, responsibleInput){
+				todoList[index].task = taskInput;
+				todoList[index].responsible = responsibleInput;
+				todoList[index].checked = '';
+				todoList[index].doneDate = null;
+				inputInfo='';
+				updateView();
+			}
+
+			function selectResponsible(){
+				availableResponsible = '';
+
+				for (i=0; i<todoList.length;i++){
+					if (!availableResponsible.includes(todoList[i].responsible)){
+						availableResponsible += `<option value="${todoList[i].responsible}">${todoList[i].responsible}</option>`;
+					}
+				}
+				availableResponsible = `<select name="names" id="names" onchange="filterTasksByPerson(this.value)"><option value="empty"></option><option value="showAllPeople">Show all</option>${availableResponsible}</select>`;
+
+				updateView();
+			}
+
+			function filterTasksByPerson(selected){
+				selectedPerson=selected;
+				if (!showAll) showAll = [...todoList];
+				if (selectedPerson == 'showAllPeople'){
+					todoList=showAll;
+					updateView();
+				} else {
+					updatedTodoList = [];
+					for(j=0;j<showAll.length;j++){
+						if (showAll[j].responsible == selectedPerson){
+							updatedTodoList.push(showAll[j])
+						}
+					}
+				todoList=updatedTodoList;
+				updateView();
+				}
+			}
+
+			function sortByDate() {
+  			todoList.sort(function(a, b){
+				let dateA = a.doneDate ? new Date(a.doneDate) : 0; 
+				let dateB = b.doneDate ? new Date(b.doneDate) : 0; 
+				return dateA - dateB; 
+				});
+				updateView();
+			}
+
+			// function sortByDate() {
+  		// 	todoList.sort(function(a, b){
+			// 		if (a.doneDate) {dateA = new Date(a.doneDate);
+			// 		} else { dateA = 0}
+			// 		if (b.doneDate) {dateB = new Date(b.doneDate);
+			// 		} else {dateB = 0}
+			// 		return dateA - dateB; 
+			// 		});
+			// 	updateView();
+			// }
+			
+
+			// function filterPaging(){
+			// 	if (!showAll) showAll = [...todoList];
+			// 	currentlyShowing='';
+			// 	for (j=startingIndex;j<startingIndex+10; j++){
+			// 		currentlyShowing += (todoList[j])
+			// 		}
+			// 	todoList=currentlyShowing;
+			// 	startingIndex*=10;
+			// 	updateView();
+			// }
+
+
+
+
+
+
+
+    </script>
+  </body>
+</html>

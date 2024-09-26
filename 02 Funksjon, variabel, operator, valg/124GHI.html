@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app">
+	</div>
+	<div id="chosenDate"></div>
+</div>
+
+<script>
+//function showDateSelector(day, month, year){
+//	document.getElementById('app').innerHTML=/*HTML*/`
+//	${day}
+//	+${month}
+//	+${year};
+//	`
+//}
+let shownNumberDay=1;
+let shownNumberMonth=1;
+let shownNumberYear=2020;
+showDateSelector();
+
+function showDateSelector() {
+    document.getElementById('app').innerHTML =
+        createNumberSelector(shownNumberDay, 1, 31, 'Day')
+        + createNumberSelector(shownNumberMonth, 1, 12, 'Month')
+        + createNumberSelector(shownNumberYear, 2020, 2025, 'Year');
+}
+	
+function createNumberSelector(shownNumber, minNumber, maxNumber,contextText){
+	let upButtonDisabled;
+	let downButtonDisabled;
+	if (shownNumber <= minNumber){downButtonDisabled='disabled';}
+		else if (shownNumber >= maxNumber){upButtonDisabled='disabled';};
+	
+	if (contextText=='Day'){shownNumberDay=shownNumber}
+		else if (contextText=='Month'){shownNumberMonth=shownNumber}
+		else if (contextText=='Year'){shownNumberYear=shownNumber};
+	dateReturner(shownNumberDay,shownNumberMonth, shownNumberYear);
+
+	return (/*HTML*/`
+	<div id="${contextText}Main" style="display: flex;align-items: center;">
+    <div id="${contextText}" style="font-size: 300%;">${contextText}: ${shownNumber}</div>
+			<div style="display: flex; flex-direction: column;align-items: flex-start;">
+					<button onclick="selectPluss(${shownNumber},'${contextText}','${minNumber}','${maxNumber}')" ${upButtonDisabled}>▲</button>
+					<button onclick="selectMinus(${shownNumber},'${contextText}','${minNumber}','${maxNumber}')" ${downButtonDisabled} >▼</button>
+			</div>
+	</div>`);
+}
+
+
+function selectPluss(shownNumber, contextText, minNumber, maxNumber) {
+	shownNumber++;
+	document.getElementById(`${contextText}Main`).outerHTML = 
+		createNumberSelector(shownNumber, minNumber, maxNumber, contextText);
+}
+
+
+function selectMinus(shownNumber, contextText, minNumber, maxNumber){
+	shownNumber--;
+	document.getElementById(`${contextText}Main`).outerHTML = 
+		createNumberSelector(shownNumber, minNumber, maxNumber, contextText);
+}
+
+
+function dateReturner(shownNumberDay, shownNumberMonth, shownNumberYear){
+		document.getElementById('chosenDate').innerHTML='Chosen date is:'
+	document.getElementById('chosenDate').innerHTML+=` ${shownNumberDay}.${shownNumberMonth}.${shownNumberYear}.`
+}
+
+</script>
+
+</body>
+</html>

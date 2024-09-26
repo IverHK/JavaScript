@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app"></div>
+
+
+	<script>
+
+		let showingText=0;
+		let textLength=0;
+		let textInput='';
+		let i = 0;
+		let reversedText='';
+		let letterCount=0;
+		let capitalLetterCount = 0;
+		let smallLetterCount = 0;
+
+
+
+		showApp();
+		function showApp(){
+			document.getElementById('app').innerHTML=/*HTML*/`
+			<input type="text" id="textInput" placeholder="Enter text to count letters">	<br>
+			<input type="text" id="letterInput" placeholder="Enter letter to count">	<br>
+			<button onclick="countLetter()">count it!</button>	<br>
+			<div>Amount of searched letters: ${letterCount}</div>
+			<div>Amount of capital letters: ${capitalLetterCount}</div>
+			<div>Amount of small letters: ${smallLetterCount}</div>
+			<div>Total amount of letters: ${textLength}</div>
+			`; 
+		}
+
+
+
+	function countLetter(){
+		textInput = document.getElementById('textInput').value;
+		letterInput = document.getElementById('letterInput').value;
+		textLength = textInput.length;
+
+		for(i = textLength-1;i>=0;i--){
+			if (textInput.charAt(i)==letterInput){
+				letterCount++;}
+			if (textInput.charAt(i)==textInput.charAt(i).toUpperCase() && textInput.match(/[A-Z]/)){
+				capitalLetterCount++;}
+			if (textInput.charAt(i)==textInput.charAt(i).toLowerCase() && textInput.match(/[a-z]/)){
+				smallLetterCount++;}
+		}
+		showApp();
+	}
+	
+
+
+	
+	</script>
+</body>
+</html>

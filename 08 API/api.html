@@ -1,0 +1,17 @@
+<head>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+	<button onclick="hentData()">Hent vits</button><div id="vits"></div>
+	<script>
+			let vitsDiv = document.getElementById('vits');
+
+			async function hentData() {
+					let resultat = await axios.get('https://api.chucknorris.io/jokes/random');
+					let vits = resultat.data;
+					console.log(vits);
+					console.log(resultat);
+					vitsDiv.innerHTML = vits.value;
+			}
+	</script>
+</body>

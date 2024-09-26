@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<Style>
+
+#puzzle {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  gap: 10px;
+  margin: 20px auto;
+  max-width: 320px;
+}
+
+.puzzle__tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  background-color: #f0f0f0;
+  border: 2px solid #ddd;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.puzzle__tile:hover {
+  background-color: #e0e0e0;
+}
+
+.puzzle__tile--blank {
+  background-color: #ffffff;
+  border: 2px dashed #ccc;
+  cursor: default;
+}
+
+#startAgainButton {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#startAgainButton:hover {
+  background-color: #45a049;
+}
+
+	</Style>
+
+
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parprogrammering: 152C</title>
+  <link rel="stylesheet" href="152C--par.css">
+</head>
+<body>
+  <div id="puzzle"></div>
+  <button id="startAgainButton">Start på nytt</button>
+  </div>
+  <script src="152C--par.js"></script>
+</body>
+</html>
+	
+	<script>
+
+	/******************************************************************************
+ * MODEL
+ ******************************************************************************/
+let numbers = [1, 2, 5, 7, null, 3, 4, 8, 6];
+
+function shuffleArray(array) {
+  array.sort(() => Math.random() - 0.5)
+}
+/******************************************************************************
+ * VIEW
+ ******************************************************************************/
+function updateView() {
+  const puzzleDiv = document.getElementById('puzzle');
+  puzzleDiv.innerHTML = '';
+
+  for (let i = 0; i < numbers.length; i++) {
+    const tile = document.createElement('div');
+    tile.className = 'puzzle__tile';
+
+    if (numbers[i] !== null) {
+      tile.innerHTML = numbers[i];
+      tile.onclick = function () {
+        swap(i);
+      };
+    } else {
+      tile.className += ' puzzle__tile--blank';
+    }
+    puzzleDiv.appendChild(tile);
+  }
+}
+
+/******************************************************************************
+ * CONTROLLER
+ ******************************************************************************/
+function swap(index) {
+  const blankIndex = numbers.indexOf(null);
+  if (areNeighbours(index, blankIndex)) {
+    [numbers[index], numbers[blankIndex]] = [numbers[blankIndex], numbers[index]];
+    updateView();
+  }
+}
+
+function areNeighbours(index1, index2) {
+  const row1 = Math.floor(index1 / 3);
+  const col1 = index1 % 3;
+  const row2 = Math.floor(index2 / 3);
+  const col2 = index2 % 3;
+
+  return (row1 === row2 && Math.abs(col1 - col2) === 1) || (col1 === col2 && Math.abs(row1 - row2) === 1);
+}
+
+function startAgain() {
+  shuffleArray(numbers);
+  updateView();
+}
+
+shuffleArray(numbers);
+updateView();
+
+// Add event listener to the "Start Again" button
+document.getElementById('startAgainButton').addEventListener('click', startAgain);
+	</script>
+</body>
+</html>

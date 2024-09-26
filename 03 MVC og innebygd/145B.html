@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eksempel 1</title>
+
+</head>
+<body>
+
+
+<div class="header dark" onclick="showBodyGame()">
+	Hode, kropp og ben
+</div>
+	<div id="cardGame" class="bodies">    
+</div>
+
+<script>
+
+	let headNumber=1;
+	let bodyNumber=1;
+	let legsNumber=1;
+
+	showApp();
+	function showApp(){
+		document.getElementById('cardGame').innerHTML = 
+		showElement('Head',headNumber)
+		+ showElement('Body',bodyNumber,1,4)
+		+ showElement('Legs',legsNumber,1,4);
+
+	function showElement(text,number,min,max){
+		return /*HTML*/`
+		<div id="${text}" class="bodyPart">
+			<button ${number <= min ? "disabled" : ""} onclick="select${text}(${number - 1})">◀</button>
+			<img src="img/${text}${number}.png">
+			<button ${number >= max ? "disabled" : ""} onclick="select${text}(${number + 1})">▶</button>
+		</div>`
+		}	
+	}
+
+	function selectHead(number){
+		headNumber = cycleNumber(number,1,4);
+		console.log(headNumber);
+		showApp();
+	}
+	function selectBody(number){
+		bodyNumber = number;
+		console.log(bodyNumber);
+		showApp();
+	}
+	function selectLegs(number){
+		legsNumber = number;
+		console.log(legsNumber);
+		showApp();
+	}
+	function cycleNumber(number, min, max) {
+    if (number < min) {
+        return max;
+    } else if (number > max) {
+        return min;
+    }
+    return number;
+}
+
+</script>
+</body>
+</html>

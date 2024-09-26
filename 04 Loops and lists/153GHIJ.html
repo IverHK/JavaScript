@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+</head>
+
+<body>
+		<div id="app1"></div>
+		<div id="app2"></div>
+		<div id="app3"></div>
+		<div id="app4"></div>
+		<div id="app5"></div>
+
+
+
+		<script>
+				// Model
+				let myList = [1, 2, 4, 5,6,6];
+				let frequencyTable=[];
+				let frequencyTableFinished=[];
+				let highestNumber = Math.max(...myList);
+				let medianNumbers=[];
+				let pairNumbers=[];
+				let highestPair;
+				let smallStraight=0;
+				let largeStraight=0;
+
+				// View
+				updateView();
+				function updateView() {
+						document.getElementById('app1').innerHTML += 'original list = ' + myList;
+						document.getElementById('app2').innerHTML += createTable();
+						document.getElementById('app3').innerHTML += 'The median number(s): ' + createMedianNumber();
+						document.getElementById('app4').innerHTML += 'The number(s) with atleast one pair: ' +  findPairs();
+						document.getElementById('app5').innerHTML += findStraight();
+				}
+
+				// Controller
+				function createTable(){
+					for (k=0;k<=highestNumber;k++){
+						frequencyTable[k]=0;
+					}
+					for (i=0;i<myList.length;i++){
+						if (!frequencyTable.includes(myList[i])){
+							frequencyTable[myList[i]]++ ;
+						} else if (frequencyTable.includes(myList[i])){
+							frequencyTable[(myList[i])]++;
+							}
+					}
+					for (l=0;l<frequencyTable.length;l++){
+						frequencyTableFinished += `// indeks ${[l]} => ${frequencyTable[l]} forekomster av tallet ${[l]} <br>`;
+					}
+					return frequencyTableFinished;
+				}	
+	
+				function createMedianNumber(){
+					for (m=0;m<frequencyTable.length;m++){
+						if (frequencyTable[m]>=Math.max(...frequencyTable)){
+							medianNumbers.push(m);
+						}
+					}
+					return medianNumbers;
+				}
+
+				function findPairs(){
+					highestPair=0;
+					for (n=0;n<frequencyTable.length;n++){
+						if (frequencyTable[n]>=2){pairNumbers.push(n)}
+					}
+					for (let pairNumber of pairNumbers){
+						if (highestPair<=pairNumbers[pairNumber]){
+							highestPair=pairNumbers[pairNumber]+1}
+					}
+					return pairNumbers +' <br>The highest pair: '+ highestPair;
+				}
+
+				function findStraight(){
+					for (n=1;n<5;n++){
+						if (frequencyTable[n] == 1){
+							smallStraight++;
+						}
+						if (frequencyTable[n+1] == 1){
+							largeStraight++;
+						}
+					}
+					if (smallStraight==4){return 'You have a small straight'} 
+					if (largeStraight==4){return 'You have a large straight'}
+					else return 'No straight this time';
+				}
+				
+				
+		</script>
+</body>
+
+</html>

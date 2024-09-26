@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>116A</title>
+	<style>
+		.application{
+			border: 2px solid black;
+			height: 50px;
+			width: 100px;
+			margin: 20px;
+			display: flex;
+			justify-content:space-evenly ;
+			align-items: center;
+		}
+
+		#shownNumber{
+			font-size: 30px;
+		}
+
+	</style>
+
+</head>
+<body>
+
+
+	<div class="application">
+		<div id="shownNumber"> 1</div>
+
+		<div class="controllNumber">
+			<div><button onclick="addOne()">+1</button></div>
+			<div><button onclick="doubleNumber()">double</button></div>
+		</div>
+	</div>
+
+	<script>
+		function addOne(){
+			let newNumber = document.getElementById('shownNumber').innerHTML;
+			newNumber ++;
+			document.getElementById('shownNumber').innerHTML = /*HTML*/
+				newNumber;
+		}
+
+		function doubleNumber(){
+			let newNumber = document.getElementById('shownNumber').innerHTML;
+			newNumber = newNumber * 2;
+			document.getElementById('shownNumber').innerHTML = /*HTML*/
+				newNumber;
+		}
+		
+	
+		
+
+	</script>
+
+
+
+
+	
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	
+
+	<script>
+		console.log(highestNumber(1,2,3))
+		function highestNumber(numberOne,numberTwo,numberThree){
+			if (numberOne>numberTwo && numberOne > numberThree) return numberOne;
+			if (numberTwo>numberOne && numberTwo > numberThree) return numberTwo;
+			if (numberThree>numberOne && numberThree > numberTwo) return numberThree;
+			else {return 'Atleast two equal numbers'};
+		}
+	</script>
+</body>
+</html>

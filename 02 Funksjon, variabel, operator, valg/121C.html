@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="testing"></div>
+
+    <script>
+      runScripts();
+      function runScripts() {
+        delEn();
+        delTo();
+        delTre();
+        delFire();
+      }
+
+      function delEn() {
+        delEnEn();
+        delEnTo();
+      }
+
+      function delTo() {
+        delToEn();
+        delToTo();
+      }
+
+      function delTre() {
+        delTreEn();
+        delTreTo();
+        delTreTre();
+      }
+
+      function delFire() {
+        delFireEn();
+        delFireTo();
+        delFireTre();
+      }
+
+      function delEnEn() {
+        document.getElementById("testing").innerHTML += `
+			<label for="fname">First name:</label><br/>
+			<input type="text" id="fname"><br/>
+			`;
+      }
+
+      function delEnTo() {
+        document.getElementById("testing").innerHTML += `
+			<label for="lname">Last name:</label><br/>
+			<input type="text" id="lname"><br/>
+			`;
+      }
+
+      function delToEn() {
+        document.getElementById("testing").innerHTML += `
+				<br>
+				<label for="zero2hundred">En til hundre:</label><br/>
+				<input type="range" min="1" max="100" step="1" id="zero2hundred"><br/>
+				`;
+      }
+
+      function delToTo() {
+        document.getElementById("testing").innerHTML += `
+				<label for="number">Skriv inn et tall:</label><br/>
+				<input type="number" id="number"><br/>
+				`;
+      }
+
+      function delTreEn() {
+        document.getElementById("testing").innerHTML += `
+				<br>
+				<input type="radio" id="html" name="fav_language">
+				<label for="html">HTML</label><br/>
+				`;
+      }
+
+      function delTreTo() {
+        document.getElementById("testing").innerHTML += `
+				<input type="radio" id="css" name="fav_language">
+				<label for="css">CSS</label><br>
+				`;
+      }
+
+      function delTreTre() {
+        document.getElementById("testing").innerHTML += `
+				<input type="radio" id="javascript" name="fav_language">
+				<label for="javascript">JavaScript</label><br/>
+				`;
+      }
+
+      function delFireEn() {
+        document.getElementById("testing").innerHTML += `
+				<br>
+				<input type="checkbox" id="vehicle1">
+				<label for="vehicle1"> I have a bike</label><br/>
+				`;
+      }
+
+      function delFireTo() {
+        document.getElementById("testing").innerHTML += `
+				<input type="checkbox" id="vehicle2">
+				<label for="vehicle2"> I have a car</label><br/>
+				`;
+      }
+
+      function delFireTre() {
+        document.getElementById("testing").innerHTML += `
+				<input type="checkbox" id="vehicle3">
+				<label for="vehicle3"> I have a boat</label><br/>
+				`;
+      }
+			
+    </script>
+  </body>
+</html>

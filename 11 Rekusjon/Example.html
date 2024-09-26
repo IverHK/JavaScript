@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="500" height="502" style="background-color: lightgray;">
+    </canvas>
+    <script>
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+        ctx.strokeStyle = 'green';
+
+        const p1 = { x: 250, y: 0 };
+        const p2 = { x: 500, y: 500 };
+        const p3 = { x: 0, y: 500 };
+
+        drawPattern(p1, p2, p3, 6);
+
+        function drawPattern(p1, p2, p3, n) {
+            drawTriangle(p1, p2, p3);
+            if (n == 1) return;            
+            const p12 = getMiddlePoint(p1, p2);
+            const p13 = getMiddlePoint(p1, p3);
+            const p23 = getMiddlePoint(p2, p3);
+            drawPattern(p1, p12, p13, n-1);
+            drawPattern(p12, p2, p23, n-1);
+            drawPattern(p3, p13, p23, n-1);
+        }
+
+        function drawTriangle(p1, p2, p3) {
+            drawLine(p1, p2);
+            drawLine(p1, p3);
+            drawLine(p2, p3);
+        }
+
+        function drawLine(point1, point2) {
+            ctx.moveTo(point1.x, point1.y);
+            ctx.lineTo(point2.x, point2.y);
+            ctx.stroke();
+        }
+
+        function getMiddlePoint(p1, p2) {
+            return { x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2 };
+        }
+    </script>
+</body>
+
+</html>

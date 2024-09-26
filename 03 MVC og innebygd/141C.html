@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	
+<div>
+	<button onclick="addDiv()">Add div</button>
+</div>
+<div>
+<input type="text" name="" id="frontColorInput">
+	<input type="text" name="" id="backColorInput">
+</div>
+<div style="color: lightcoral; background-color: lightblue;">
+	All the beatiful colors!
+</div>
+
+<script>
+	let fColor = null;
+	let bColor= null;
+
+	function addDiv(){
+		if (!fColor && !bColor){
+			fColor = document.getElementById('frontColorInput').value;
+			bColor = document.getElementById('backColorInput').value;
+			}
+		document.body.innerHTML+=/*HTML*/`
+		<div style="color: ${fColor}; background-color: ${bColor};">
+			All the beatiful colors!
+		</div>`
+	}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+
+	<style>
+		table{
+			border-collapse: collapse;
+			}
+
+		td, th {
+				border: 1px solid #ddd;
+				padding: 8px;
+		}
+
+		tr:nth-child(even) {
+				background-color: #f2f2f2;
+		}
+
+		th {
+				background-color: #04AA6D;
+				color: white;
+		}
+</style>
+
+</head>
+<body>
+	<button onclick="makeTable()">Make Empty Table!</button>
+	<button onclick="makeNewLine()">New random line</button>	<br>
+	<br>
+	<input type="number" id="inputDag" placeholder="date (number)">	<br>
+	<input type="number" id="inputTime" placeholder="time (number)">	<br>
+	<input type="number" id="inputMinutt" placeholder="minutt (number)">	<br>
+	<input type="number" id="inputTemperatur" placeholder="temp (number)">	<br>
+	<br>
+	<button onclick="addInput()">New line with input</button>
+	<br>	<br> 	<br>
+
+	<div id="showTable"></div>
+
+	<script>
+
+		function makeTable(){
+			document.getElementById('showTable').innerHTML=/*HTML*/`
+			<table id="innerTable">
+					<tr>
+							<th>Dag</th>
+							<th>Time</th>
+							<th>Minutt</th>
+							<th>Temperatur</th>
+					</tr>
+			</table>
+		`}
+		
+		function makeNewLine(dagInput = getRandomNumber(1, 30), 
+                             timeInput = getRandomNumber(1, 24), 
+                             minuttInput = getRandomNumber(0, 59), 
+                             temperaturInput = getRandomNumber(-10, 35)){		
+			document.getElementById('innerTable').innerHTML+=/*HTML*/`
+			<tr id=infoGroup>
+				<td >${dagInput}</th>
+				<td >${timeInput}</th>
+				<td >${minuttInput}</th>
+				<td >${temperaturInput}</th>
+			</tr>
+		`}
+
+		function addInput(){
+			const dagInput = document.getElementById('inputDag').value;
+			const timeInput = document.getElementById('inputTime').value;
+			const minuttInput = document.getElementById('inputMinutt').value;
+			const temperaturInput = document.getElementById('inputTemperatur').value;
+			makeNewLine(dagInput, timeInput, minuttInput, temperaturInput);
+		}
+
+		function getRandomNumber(min, max) {
+			min =0 
+			max= 30
+				return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+
+
+
+	</script>
+	
+</body>
+</html>

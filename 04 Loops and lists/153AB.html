@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+</head>
+
+<body>
+		<div id="app1"></div>
+		<div id="app2"></div>
+
+		<script>
+				// Model
+				let variable = '';
+				let myList= [];
+				let chosenList = [];
+				for (let i = 100; i <= 1000; i++) {
+					myList.push(i);}
+					sumNumbers = 0;
+				let html=[];
+				let startingIndex=0;
+				let currentPage=1;
+				let currentlyShowing='';
+				let pageSize=10
+				let showButtons='';
+
+
+					
+
+				// View
+				choosePagingIndex();
+				filterPaging(0);
+				function updateView() {
+						document.getElementById('app1').innerHTML = showButtons;
+						document.getElementById('app2').innerHTML = '<br>' + currentlyShowing;
+				}
+
+				// Controller
+
+				function filterPaging(startingIndex){
+					currentlyShowing='';
+					for (j=startingIndex;j<startingIndex+10; j++){
+						currentlyShowing += (myList[j] + '<br>')
+					}
+					currentlyShowing += `<br> <button onclick="filterPaging(${startingIndex + pageSize})">Next</button><br>
+						<br> <button onclick="showOddNumbers()">show odd numbers</button>
+						<br> <button onclick="showPairNumbers()">show pair numbers</button>
+						<br> <button onclick="showAllNumbers()">show all numbers</button>`
+					startingIndex*=10;
+					updateView();
+				}
+
+			
+				function choosePagingIndex (){
+					showButtons=''
+					currentlyShowing='';
+					for (k=0;k<10;k++){
+						showButtons += `<button onclick="filterPaging(${[k*10]})"> 1${[k]}0-1${[k]}9 </button>`
+					}
+					updateView();
+				}
+
+				function showOddNumbers(){
+					showAllNumbers();
+					let oddNumbers=[];
+					for(l=0;l<myList.length;l++){
+						if (myList[l] % 2 == 1){
+						oddNumbers.push(myList[l])}
+					}
+					myList=[];
+					myList=oddNumbers;
+					filterPaging(0);		
+				}
+
+				function showPairNumbers(){
+					showAllNumbers();
+					let pairNumbers=[];
+					for(m=0;m<myList.length;m++){
+						if (myList[m] % 2 == 0){
+						pairNumbers.push(myList[m])}
+					}
+					myList=[];
+					myList=pairNumbers;
+					filterPaging(0);
+				}
+
+				function showAllNumbers(){
+					myList=[];
+					for (let i = 100; i <= 1000; i++) {
+						myList.push(i);
+					}
+					filterPaging(0);
+				}
+
+				
+		</script>
+</body>
+
+</html>

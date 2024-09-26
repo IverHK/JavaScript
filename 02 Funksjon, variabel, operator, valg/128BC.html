@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+
+	<input type="number" id="guessedNumberInput">
+	<button onclick="application()">Guess!</button>
+	<div id="showingResult">Guess the secret number!</div>
+	<div id="showingGuessCount"></div>
+
+<script>
+
+	let secretNumber = getRandomNumber(1,100);
+	let guessCount= 0;
+
+	function getRandomNumber(min, max) {
+		return min + Math.floor(Math.random() * (max - min + 1));
+	}
+
+	function application(){
+		let guessedNumber = document.getElementById('guessedNumberInput').value;
+		if (guessedNumber==secretNumber){
+			document.getElementById('showingResult').innerHTML= `You Guessed Correct!`;
+			document.getElementById('showingGuessCount').innerHTML= `You used ${guessCount} guesses.`;
+
+		}
+			else if (guessedNumber>secretNumber){
+					document.getElementById('showingResult').innerHTML= `Incorrect, the secret number is lower!`;
+					guessCount++;
+					document.getElementById('showingGuessCount').innerHTML= `You have guessed ${guessCount} times`;
+				}
+			else if(guessedNumber<secretNumber){
+			document.getElementById('showingResult').innerHTML= `Incorrect, the secret number is higher!`;
+			guessCount++;
+			document.getElementById('showingGuessCount').innerHTML= `You have guessed ${guessCount} times`;
+
+			}
+	}
+
+</script>
+	
+</body>
+</html>

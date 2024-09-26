@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+
+	<pre id="output"></pre>
+
+<script>
+
+
+
+
+	showOutput();
+	function showOutput(){
+			for (iRow=0;iRow<4;iRow++){
+				for (iSpace=0;iSpace<iRow;iSpace++){
+					writeSpace();
+				} for (iHash=0;iHash<8-2*iRow;iHash++){
+						writeHash();
+					}
+					writeLineBreak();
+			}
+	}
+	showOutputOpposite();
+	function showOutputOpposite(){
+			for (iRow=0;iRow<4;iRow++){
+				for (iSpace=0;iSpace<3-iRow;iSpace++){
+					writeSpace();
+				} for (iHash=0;iHash<2+2*iRow;iHash++){
+						writeHash();
+					}
+					writeLineBreak();
+			}
+	}
+
+	showX();
+	function showX(){
+		for (iRow=0;iRow<4;iRow++){
+				for (iSpace=0;iSpace<iRow;iSpace++){
+					writeSpace();
+				} for (iHash=0;iHash<8-2*iRow;iHash++){
+						writeHash();
+					}
+					writeLineBreak();
+			}
+			for (iRow=0;iRow<4;iRow++){
+				for (iSpace=0;iSpace<3-iRow;iSpace++){
+					writeSpace();
+				} for (iHash=0;iHash<2+2*iRow;iHash++){
+						writeHash();
+					}
+					writeLineBreak();
+			}
+	}
+
+
+
+
+
+showX();
+	showBigBoyX();
+
+
+	function showBigX(){
+		for (iRow=0;iRow<4;iRow++){
+				for (iSpace=0;iSpace<iRow;iSpace++){
+					writeSpace();
+				} for (iHash=0;iHash<2+2*iRow;iHash++){
+						writeHash();
+					}
+					writeLineBreak();
+			}
+			for (iRow=0;iRow<4;iRow++){
+				for (iSpace=0;iSpace<3-iRow;iSpace++){
+					writeSpace();
+				} for (iHash=0;iHash<8-2*iRow;iHash++){
+						writeHash();
+					}
+					writeLineBreak();
+			}
+	}
+
+	function showBigBoyX(){
+		for (iRow=0;iRow<4;iRow++){
+			for (iSpace=0;iSpace<1+iRow;iSpace++){
+				writeSpace();}
+			for (iHash=0;iHash<2+2*iRow-1;iHash++){
+						writeHash();}
+			for (iSpace=0;iSpace < 18-(6*iRow);iSpace++){
+				writeSpace();}
+			for (iHash=0;iHash<2+2*iRow-1;iHash++){
+						writeHash();
+					}writeLineBreak();
+		}
+
+		for (iRow=0;iRow<4;iRow++){
+			for (iSpace=0;iSpace<4-iRow;iSpace++)
+			{writeSpace();}
+			for (iHash=0;iHash<8-2*iRow-1;iHash++){
+						writeHash();
+					}
+			for (iSpace=0;iSpace<iRow*6;iSpace++)
+				{writeSpace();}
+			for (iHash=0;iHash<8-2*iRow-1;iHash++){
+						writeHash();
+					}writeLineBreak();
+		}
+	}
+
+showBigNewX();
+	function showBigNewX(){
+		for (iRow=0;iRow<4;iRow++){
+			for (iSpace=0;iSpace<iRow;iSpace++){
+				writeSpace();}
+			for (iHash=0;iHash <= iRow;iHash++){
+						writeHash();}
+			for (iSpace=0; iSpace < 12-(4 * iRow);iSpace++){
+				writeSpace();}
+			for (iHash=0;iHash <= iRow;iHash++){
+						writeHash();
+					}writeLineBreak();
+		}
+
+		for (iRow=0;iRow<4;iRow++){
+			for (iSpace=0;iSpace<3-iRow;iSpace++)
+			{writeSpace();}
+			for (iHash=0;iHash < 4-iRow ;iHash++){
+						writeHash();
+					}
+			for (iSpace=0;iSpace<iRow*4;iSpace++)
+				{writeSpace();}
+			for (iHash=0;iHash < 4-iRow ;iHash++){
+						writeHash();
+					}writeLineBreak();
+		}
+	}
+
+
+
+
+
+	function writeHash() {
+			document.getElementById('output').innerText += '#';
+	}
+
+	function writeSpace() {
+			document.getElementById('output').innerText += ' ';
+	}
+
+	function writeLineBreak() {
+			document.getElementById('output').innerText += '\n';
+	}
+</script>
+	
+</body>
+</html>

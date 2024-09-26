@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+
+	<div id="app"></div>
+	<script>
+
+//model
+let secretText = 'hemmelig';
+let currentText = '_______';
+let guessedLetter = 'e';
+let currentTextBeforeGuessedLetter = '';
+let currentTextAfterGuessedLetter = '';
+let secretTextAfterGuessedLetter = '';
+let showingText = currentText;
+
+
+//view
+showApp();
+function showApp(){
+	document.getElementById('app').innerHTML=/*HTML*/`
+		<h1>Guess the secret word!</h1><br>
+		<div id="currentLetters">Your correct letters are: ${currentText} </div><br>
+		<div><input type="text" placeholder="Guess a letter" id='letterGuessInput'> 
+		<button onclick="guessFunction()">Guess!</button></div>`
+}
+
+//controller
+
+function guessFunction(){
+	guessedLetter = document.getElementById('letterGuessInput').value;
+  let index = secretText.indexOf(guessedLetter);
+
+    if(index == -1) return currentText;
+
+    currentTextBeforeGuessedLetter = currentText.substring(0, index);     
+    currentTextAfterGuessedLetter = currentText.substring(index + 1);
+    secretTextAfterGuessedLetter = secretText.substring(index + 1);
+
+		currentText = currentTextBeforeGuessedLetter + guessedLetter 
+		+ currentTextAfterGuessedLetter;
+
+		
+	
+		showApp();
+}
+
+
+
+// let newCurrentText = ''; 
+// for (let i = 0; i < secretText.length; i++) {
+// 		if (secretText[i] === guessedLetter) {newCurrentText += guessedLetter;
+// 		} else {newCurrentText += currentText[i];}
+// }
+// currentText = newCurrentText;
+
+	</script>
+	
+</body>
+</html>

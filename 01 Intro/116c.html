@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+
+	<style>
+
+
+	</style>
+
+</head>
+
+<body>
+
+	<div>
+		<div id="leilighet">
+			Du står utenfor en leilighet!
+			<button onclick="gangen()">gå inn</button>
+		</div>
+	</div>
+
+	<script>
+		function gangen(){
+			document.getElementById('leilighet').innerHTML= /*HTML*/`
+			Du er i gangen
+			<button onclick ='ut()'> Gå ut </button>
+			<button onclick = 'stua()'> Gå inn i stua</button>
+			<button onclick = 'badet()'> Gå inn på badet </button>
+			<button onclick = 'kjøkkenet()'> Gå inn på kjøkkenet</button>
+			`
+		}
+		function stua(){
+			document.getElementById('leilighet').innerHTML= /*HTML*/`
+			Du er i stua
+			<button onclick = 'kjøkkenet()'> Gå inn på kjøkkenet</button>
+			<button onclick= 'gangen()'> gå til gangen</button>
+			`
+		}
+
+		function kjøkkenet(){
+			document.getElementById('leilighet').innerHTML= /*HTML*/`
+			Du står i kjøkkenet
+			<button onclick = 'stua()'> Gå inn på stua</button>
+			<button onclick= 'gangen()'> gå til gangen</button>
+			`
+		}
+		function badet(){
+			document.getElementById('leilighet').innerHTML= /*HTML*/ `
+			Du står på badet
+			<button onclick= 'gangen()'> gå til gangen</button>
+			`
+		}
+		function ut(){
+			document.getElementById('leilighet').innerHTML= /*HTML*/ `
+			du står utenfor en leilighet			
+			<button onclick="gangen()">gå inn</button>
+			`
+		}
+
+	</script>
+</body>
+</html>

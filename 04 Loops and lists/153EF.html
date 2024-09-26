@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+</head>
+
+<body>
+		<div id="app"></div>
+		<script>
+				// Model
+				let secretWord = 'HEI';
+				let incryptedWord = '';
+				let alfabet = 'ABCDEFGHIJKLMOPQRSTUVWXYZÆØÅ';
+				let secretCode = 'ÅØÆYUOIEABCDFGHJKLMPQRSTVWXZ';
+				let newSecretWord = '';
+				let totallyIncryptedWord='';
+
+				// View
+				updateView();
+				function updateView() {
+						document.getElementById('app').innerHTML = /*HTML*/`
+						<div>the original word is ${secretWord}</div>
+						<div>the incrypted word is ${incryptedWord}</div>
+						<div>the transformed word is ${newSecretWord}</div>
+						<div>the totally incrypted word is ${totallyIncryptedWord}</div>
+						`;
+				}
+
+				// Controller
+				crypt(incryptedWord,alfabet, secretCode,);
+				crypt(secretWord,secretCode,alfabet);
+				function crypt(unknownWord, translatorCode, originalCode){
+					let currentLetter;
+					let letterIndex;
+					let secretLetter;
+					for(i=0;i<unknownWord.length;i++){
+						currentLetter = unknownWord[i];
+						letterIndex=originalCode.indexOf(currentLetter);
+						secretLetter=translatorCode[letterIndex]
+						newSecretWord+=secretLetter;
+					}
+					updateView();
+				}
+				totalIncrypt(secretWord,secretCode,alfabet)
+				function totalIncrypt(unknownWord, translatorCode, originalCode){
+					let currentLetter;
+					let letterIndex;
+					let secretLetter;
+					for(i=0;i<unknownWord.length;i++){
+						currentLetter = unknownWord[i];
+						letterIndex=originalCode.indexOf(currentLetter);
+						secretLetter=translatorCode[generateRandomNumner(28)]
+						totallyIncryptedWord+=secretLetter;
+					}
+					updateView();
+				}
+
+				function generateRandomNumner(max){
+					return Math.floor(Math.random() * max)
+				}
+
+
+				
+
+
+
+
+				
+		</script>
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+
+		 #board {
+        display: grid;
+        grid-template-columns: repeat(2,97px);
+        grid-template-rows: repeat(2, 97px);
+        gap: 5px;
+				height: 200px;
+				width: 200px;
+				border: 1px, red, solid;
+
+      }
+
+			#yellowBox{
+				background-color: yellow;
+			}
+			#greyBox{
+				background-color: grey;
+			}
+	</style>
+</head>
+
+<body onload="startingScreen()">
+
+	<div id="board"></div>
+	<div id="showTimeDiv"></div>
+
+	<script>
+		let showStartingTime=new Date().getTime();
+		let showEndingTime;
+
+		function application(){
+			let selectedIndex = getRandomNumber(1,4);
+			if (selectedIndex==1){showBoxes1();}
+			if (selectedIndex==2){showBoxes2();}
+			if (selectedIndex==3){showBoxes3();}
+			if (selectedIndex==4){showBoxes4();}
+		}
+
+		function showTimeApp(){
+			showEndingTime=new Date().getTime();
+			showDifferenceTime= (showEndingTime-showStartingTime)/1000;
+			document.getElementById('showTimeDiv').innerHTML+=
+			`Your time was: ${showDifferenceTime} seconds<br>`;
+		}
+
+		function showBoxes1(){
+			showTimeApp();
+			document.getElementById('board').innerHTML=/*HTML*/`
+			<div id="yellowBox" onclick='application()'></div>
+			<div id="greyBox"></div>
+			<div id="greyBox"></div>
+			<div id="greyBox"></div>`
+		}
+		function showBoxes2(){
+			showTimeApp();
+			document.getElementById('board').innerHTML=/*HTML*/`
+			<div id="greyBox"></div>
+			<div id="yellowBox" onclick='application()'></div>
+			<div id="greyBox"></div>
+			<div id="greyBox"></div>`
+		}
+		function showBoxes3(){
+			showTimeApp();
+			document.getElementById('board').innerHTML=/*HTML*/`
+			<div id="greyBox"></div>
+			<div id="greyBox"></div>
+			<div id="yellowBox" onclick='application()'></div>
+			<div id="greyBox"></div>`
+		}
+		function showBoxes4(){
+			showTimeApp();
+			document.getElementById('board').innerHTML=/*HTML*/`
+			<div id="greyBox"></div>
+			<div id="greyBox"></div>
+			<div id="greyBox"></div>
+			<div id="yellowBox" onclick='application()'></div>`
+		}
+		
+		function startingScreen(){
+			document.getElementById('board').innerHTML=/*HTML*/`
+			<div id="yellowBox" onclick='application()'></div>
+			<div id="greyBox"></div>
+			<div id="greyBox"></div>
+			<div id="greyBox"></div>`
+		}
+
+		function getRandomNumber(min, max) {
+			return min + Math.floor(Math.random() * (max - min + 1));
+		}
+
+	</script>
+	
+</body>
+</html>
